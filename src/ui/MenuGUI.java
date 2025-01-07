@@ -24,7 +24,6 @@ public class MenuGUI extends JFrame {
     private JButton urediZaposlenikaButton;
     private JButton pregledZaposlenikaButton;
     private JButton obrisiZaposlenikaButton;
-    private JTabbedPane tabbedPanel;
     private JLabel rukeLabel;
 
     public MenuGUI() {
@@ -50,8 +49,35 @@ public class MenuGUI extends JFrame {
         gradientPanel.setLayout(new BorderLayout());
         gradientPanel.add(glavniPanel, BorderLayout.CENTER);
 
+        // Rounded borders and transparency
+        setupPanelBorders();
 
+        // Button Hover and Click Effects
+        setupButtonEffects();
 
+        // Logout Button Logic with Confirmation Dialog
+        setupLogoutButton();
+
+        // Replace Icons Dynamically
+        replaceIcons();
+
+        // Scale Button Icons on Resize
+        scaleIconsOnResize();
+
+        setContentPane(gradientPanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1920, 1080);
+        setLocationRelativeTo(null);
+
+        dodajZaposlenikaButton.addActionListener(e -> openZaposlenikGUI());
+        pregledZaposlenikaButton.addActionListener(e -> openPregledZaposlenikaPanel());
+
+    }
+
+    /**
+     * Set up rounded borders and transparency for panels.
+     */
+    private void setupPanelBorders() {
         zaposleniciPanel.setBorder(new RoundedBorder(20));
         zaposleniciPanel.setOpaque(false);
         platePanel.setBorder(new RoundedBorder(20));
@@ -60,52 +86,51 @@ public class MenuGUI extends JFrame {
         izvjestajPanel.setOpaque(false);
         zadnjiPanel.setBorder(new RoundedBorder(20));
         zadnjiPanel.setOpaque(false);
+    }
 
-        // Button Colors
-        Color defaultColor = Color.decode("#1C3A28"); // Default button color
-        Color hoverColor = defaultColor.brighter(); // Slightly lighter on hover
-        Color clickColor = hoverColor.brighter(); // Even lighter on click
+    /**
+     * Add hover and click effects to buttons.
+     */
+    private void setupButtonEffects() {
+        Color defaultColor = Color.decode("#1C3A28");
+        Color hoverColor = defaultColor.brighter();
+        Color clickColor = hoverColor.brighter();
 
-
-        // MouseListener for Hover and Click Effects
         odjavaButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                odjavaButton.setBackground(hoverColor); // Hover effect
+                odjavaButton.setBackground(hoverColor);
                 odjavaButton.repaint();
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                odjavaButton.setBackground(defaultColor); // Reset to default
+                odjavaButton.setBackground(defaultColor);
                 odjavaButton.repaint();
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
-                odjavaButton.setBackground(clickColor); // Click effect
+                odjavaButton.setBackground(clickColor);
                 odjavaButton.repaint();
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                odjavaButton.setBackground(hoverColor); // Return to hover color
+                odjavaButton.setBackground(hoverColor);
                 odjavaButton.repaint();
             }
         });
 
-        // Custom painting to apply rounded corners
         odjavaButton.setUI(new javax.swing.plaf.basic.BasicButtonUI() {
             @Override
             public void paint(Graphics g, JComponent c) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Paint rounded background
                 g2.setColor(c.getBackground());
                 g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 20, 20);
 
-                // Paint text
                 g2.setColor(c.getForeground());
                 FontMetrics fm = g2.getFontMetrics();
                 String text = ((JButton) c).getText();
@@ -115,47 +140,84 @@ public class MenuGUI extends JFrame {
                 int y = (c.getHeight() + textHeight) / 2 - 2;
                 g2.drawString(text, x, y);
 
-                // Paint rounded border
-                g2.setColor(c.getForeground());
                 g2.drawRoundRect(0, 0, c.getWidth() - 1, c.getHeight() - 1, 20, 20);
-
                 g2.dispose();
             }
         });
+    }
 
-        // Add Button to GridBagLayout
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0; // Adjust based on your original layout
-        gbc.gridy = 0;
-        gbc.insets = new Insets(10, 10, 10, 10);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+    /**
+     * Add logout confirmation dialog.
+     */
+    private void setupLogoutButton() {
+        odjavaButton.addActionListener(e -> {
+            int confirmed = JOptionPane.showConfirmDialog(
+                    this,
+                    "Da li ste sigurni da želite da se odjavite?",
+                    "Potvrda odjave",
+                    JOptionPane.YES_NO_OPTION
+            );
 
-        // Replace JLabel placeholders with ResizableIconLabel
+            if (confirmed == JOptionPane.YES_OPTION) {
+                SwingUtilities.invokeLater(() -> {
+                    dispose();
+                    JFrame loginFrame = new LoginGUI(); // Assuming LoginGUI exists
+                    loginFrame.setVisible(true);
+                });
+            }
+        });
+    }
+
+    /**
+     * Replace JLabel placeholders with ResizableIconLabel.
+     */
+    private void replaceIcons() {
         replaceWithResizableIcon(zaposlenikLabel, "/ikone/IkonaZaposlenik.png");
         replaceWithResizableIcon(plataLabel, "/ikone/IkonaCash.png");
         replaceWithResizableIcon(izvjestajLabel, "/ikone/IkonaIzvjestaj.png");
         replaceWithResizableIcon(settingsLabel, "/ikone/IkonaCog.png");
+    }
 
-
-        // Scale the icon for the dodajZaposlenikaButton
+    /**
+     * Scale icons when buttons are resized.
+     */
+    private void scaleIconsOnResize() {
         dodajZaposlenikaButton.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
-                scaleIconWithButton(dodajZaposlenikaButton, "/ikone/plus.png"); // Provide the correct path for your icon
+                scaleIconWithButton(dodajZaposlenikaButton, "/ikone/plus.png");
                 scaleIconWithButton(urediZaposlenikaButton, "/ikone/plus.png");
                 scaleIconWithButton(pregledZaposlenikaButton, "/ikone/plus.png");
                 scaleIconWithButton(obrisiZaposlenikaButton, "/ikone/plus.png");
             }
         });
+    }
 
-        setContentPane(gradientPanel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1920, 1080);
-        setLocationRelativeTo(null);
+    private void openZaposlenikGUI() {
+        SwingUtilities.invokeLater(() -> {
+            JFrame zaposleniFrame = new JFrame("Zaposlenik - Employee Details");
+            zaposleniFrame.setContentPane(new ZaposlenikGUI().backgroundPanel);
+            zaposleniFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            zaposleniFrame.pack();
+            zaposleniFrame.setLocationRelativeTo(null);
+            zaposleniFrame.setVisible(true);
+        });
     }
 
     /**
-     * Replace JLabel with a ResizableIconLabel dynamically.
+     * Opens the pregledZapPanel when pregledZaposlenikaButton is clicked.
      */
+    private void openPregledZaposlenikaPanel() {
+        SwingUtilities.invokeLater(() -> {
+            JFrame pregledFrame = new JFrame("Pregled Zaposlenika");
+            pregledFrame.setContentPane(new ZaposlenikGUI().pregledZapPanel);
+            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            pregledFrame.pack();
+            pregledFrame.setLocationRelativeTo(null);
+            pregledFrame.setVisible(true);
+        });
+    }
+
+
     private void replaceWithResizableIcon(JLabel label, String imagePath) {
         if (label.getParent() != null) {
             Container parent = label.getParent();
@@ -171,9 +233,6 @@ public class MenuGUI extends JFrame {
         }
     }
 
-    /**
-     * Find the index of a component in its parent container.
-     */
     private int findComponentIndex(Container parent, Component comp) {
         for (int i = 0; i < parent.getComponentCount(); i++) {
             if (parent.getComponent(i) == comp) {
@@ -183,28 +242,17 @@ public class MenuGUI extends JFrame {
         return -1;
     }
 
-    /**
-     * Scale the icon with the button size.
-     */
     private void scaleIconWithButton(JButton button, String iconPath) {
-        // Use getClass().getResource() to correctly access the resource
         URL iconURL = getClass().getResource(iconPath);
-
         if (iconURL != null) {
             ImageIcon icon = new ImageIcon(iconURL);
-            Image img = icon.getImage();  // Get the original image
-            Image scaledImg = img.getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH); // Scale the image
-            button.setIcon(new ImageIcon(scaledImg)); // Set the scaled image as the button's icon
-        } else {
-            System.err.println("Icon not found at: " + iconPath);
+            Image img = icon.getImage();
+            Image scaledImg = img.getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH);
+            button.setIcon(new ImageIcon(scaledImg));
         }
     }
 
-
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new MenuGUI();
-            frame.setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> new MenuGUI().setVisible(true));
     }
 }

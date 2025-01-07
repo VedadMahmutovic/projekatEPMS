@@ -6,8 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginGUI extends JFrame{
-
+public class LoginGUI extends JFrame {
 
     private JTextField imePolje;
     private JPasswordField passwordPolje;
@@ -18,7 +17,7 @@ public class LoginGUI extends JFrame{
     private JRadioButton employeeButton;
     private JPanel korisniciPanel;
     private JPanel mainLoginPanel;
-
+    private JRadioButton superAdminButton;
 
     public LoginGUI() {
         setTitle("Login - Employee Payroll Management System");
@@ -28,8 +27,6 @@ public class LoginGUI extends JFrame{
         setLocationRelativeTo(null); // Centriraj prozor
 
         //Izgled
-
-
 
         //Background
         loginPanel.setOpaque(false); // Omogućava transparentnost za crtanje pozadine
@@ -42,8 +39,8 @@ public class LoginGUI extends JFrame{
                 Color bottomColor = Color.decode("#477C64");
 
                 GradientPaint gradient = new GradientPaint(
-                  0, getHeight(), bottomColor,
-                  0, 0, topColor
+                        0, getHeight(), bottomColor,
+                        0, 0, topColor
                 );
                 g2d.setPaint(gradient);
                 g2d.fillRect(0, 0, getWidth(), getHeight());
@@ -62,8 +59,6 @@ public class LoginGUI extends JFrame{
         passwordPolje.setOpaque(false);
         passwordPolje.setForeground(Color.WHITE);  // Set text color
         passwordPolje.setCaretColor(Color.WHITE);
-
-
 
         gradientPanel.setLayout(new BorderLayout()); // Preuzmi layout iz loginPanel
         gradientPanel.add(loginPanel); // Dodaj originalni loginPanel u gradientPanel
@@ -85,6 +80,8 @@ public class LoginGUI extends JFrame{
                     role = "Manager";
                 } else if (employeeButton.isSelected()) {
                     role = "Employee";
+                } else if (superAdminButton.isSelected()) {
+                    role = "Super Admin"; // Add Super Admin role
                 }
 
                 // If no role is selected, show an error message
@@ -99,9 +96,28 @@ public class LoginGUI extends JFrame{
                     JOptionPane.showMessageDialog(null, "Login successful!");
                     dispose(); // Close the Login window
 
-                    // Open the MenuGUI form
-                    MenuGUI menuGUI = new MenuGUI();
-                    menuGUI.setVisible(true);
+                    // Check for the Super Admin role and proceed to MenuGUI only for Super Admin
+                    if ("Super Admin".equals(role)) {
+                        MenuGUI menuGUI = new MenuGUI();
+                        menuGUI.setVisible(true);
+                    } /*else {
+                        // Open a different GUI for Admin, Manager, or Employee
+                        // You can create different classes for each role
+                        switch (role) {
+                            case "Admin":
+                                AdminGUI adminGUI = new AdminGUI();
+                                adminGUI.setVisible(true);
+                                break;
+                            case "Manager":
+                                ManagerGUI managerGUI = new ManagerGUI();
+                                managerGUI.setVisible(true);
+                                break;
+                            case "Employee":
+                                EmployeeGUI employeeGUI = new EmployeeGUI();
+                                employeeGUI.setVisible(true);
+                                break;
+                        }
+                    }*/
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid username, password, or role.");
                 }
