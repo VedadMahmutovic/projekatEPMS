@@ -83,11 +83,11 @@
                   <component id="6824e" class="javax.swing.JLabel">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                      <gridbag top="0" left="0" bottom="0" right="25" weightx="0.0" weighty="0.0"/>
+                      <gridbag top="0" left="0" bottom="0" right="60" weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties>
                       <foreground color="-10307968"/>
-                      <text value="Dodaj zaposlenika"/>
+                      <text value="Dodaj/Obrisi"/>
                     </properties>
                   </component>
                   <component id="4012e" class="javax.swing.JButton" binding="dodajZaposlenikaButton">
@@ -167,43 +167,6 @@
                     </properties>
                   </component>
                   <component id="c2aec" class="javax.swing.JButton" binding="pregledZaposlenikaButton">
-                    <constraints>
-                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                      <gridbag weightx="0.0" weighty="0.0"/>
-                    </constraints>
-                    <properties>
-                      <background color="-15983854"/>
-                      <borderPainted value="false"/>
-                      <focusPainted value="false"/>
-                      <icon value="ikone/plus.png"/>
-                      <maximumSize width="40" height="10"/>
-                      <minimumSize width="40" height="40"/>
-                      <opaque value="true"/>
-                      <preferredSize width="15" height="15"/>
-                      <text value=""/>
-                    </properties>
-                  </component>
-                </children>
-              </grid>
-              <grid id="e5b92" layout-manager="GridBagLayout">
-                <constraints/>
-                <properties>
-                  <opaque value="false"/>
-                  <preferredSize width="200" height="40"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <component id="5a1d9" class="javax.swing.JLabel">
-                    <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                      <gridbag top="0" left="0" bottom="0" right="24" weightx="0.0" weighty="0.0"/>
-                    </constraints>
-                    <properties>
-                      <foreground color="-10307968"/>
-                      <text value="Obrisi zaposlenika"/>
-                    </properties>
-                  </component>
-                  <component id="48548" class="javax.swing.JButton" binding="obrisiZaposlenikaButton">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="0.0" weighty="0.0"/>
@@ -388,7 +351,7 @@
                       <text value="Generisi platnu listu"/>
                     </properties>
                   </component>
-                  <component id="14e2a" class="javax.swing.JButton">
+                  <component id="14e2a" class="javax.swing.JButton" binding="generisiPLButton">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="0.0" weighty="0.0"/>
@@ -425,7 +388,7 @@
                       <text value="Obracun plate"/>
                     </properties>
                   </component>
-                  <component id="dd119" class="javax.swing.JButton">
+                  <component id="dd119" class="javax.swing.JButton" binding="obracunPLButton">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="0.0" weighty="0.0"/>
@@ -462,7 +425,7 @@
                       <text value="Pregled isplata"/>
                     </properties>
                   </component>
-                  <component id="b1268" class="javax.swing.JButton">
+                  <component id="b1268" class="javax.swing.JButton" binding="pregledIsplataButton">
                     <constraints>
                       <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                       <gridbag weightx="0.0" weighty="0.0"/>

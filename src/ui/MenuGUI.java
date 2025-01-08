@@ -23,8 +23,10 @@ public class MenuGUI extends JFrame {
     private JPanel dodajZaposlenikaPanel;
     private JButton urediZaposlenikaButton;
     private JButton pregledZaposlenikaButton;
-    private JButton obrisiZaposlenikaButton;
-    private JLabel rukeLabel;
+    private JButton generisiPLButton;
+    private JButton obracunPLButton;
+    private JButton pregledIsplataButton;
+
 
     public MenuGUI() {
         setTitle("Menu - Employee Payroll Management System");
@@ -70,7 +72,9 @@ public class MenuGUI extends JFrame {
         setLocationRelativeTo(null);
 
         dodajZaposlenikaButton.addActionListener(e -> openZaposlenikGUI());
+        urediZaposlenikaButton.addActionListener(e -> openUrediZaposlenikaPanel());
         pregledZaposlenikaButton.addActionListener(e -> openPregledZaposlenikaPanel());
+
 
     }
 
@@ -187,7 +191,10 @@ public class MenuGUI extends JFrame {
                 scaleIconWithButton(dodajZaposlenikaButton, "/ikone/plus.png");
                 scaleIconWithButton(urediZaposlenikaButton, "/ikone/plus.png");
                 scaleIconWithButton(pregledZaposlenikaButton, "/ikone/plus.png");
-                scaleIconWithButton(obrisiZaposlenikaButton, "/ikone/plus.png");
+
+                scaleIconWithButton(generisiPLButton, "/ikone/plus.png");
+                scaleIconWithButton(obracunPLButton, "/ikone/plus.png");
+                scaleIconWithButton(pregledIsplataButton, "/ikone/plus.png");
             }
         });
     }
@@ -210,6 +217,17 @@ public class MenuGUI extends JFrame {
         SwingUtilities.invokeLater(() -> {
             JFrame pregledFrame = new JFrame("Pregled Zaposlenika");
             pregledFrame.setContentPane(new ZaposlenikGUI().pregledZapPanel);
+            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            pregledFrame.pack();
+            pregledFrame.setLocationRelativeTo(null);
+            pregledFrame.setVisible(true);
+        });
+    }
+
+    private void openUrediZaposlenikaPanel() {
+        SwingUtilities.invokeLater(() -> {
+            JFrame pregledFrame = new JFrame("Pregled Zaposlenika");
+            pregledFrame.setContentPane(new ZaposlenikGUI().urediZapBackPanel);
             pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             pregledFrame.pack();
             pregledFrame.setLocationRelativeTo(null);

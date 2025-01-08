@@ -13,9 +13,9 @@
       <tabbedpane id="34f35" binding="glavniTabbedPanel">
         <constraints/>
         <properties>
-          <maximumSize width="900" height="480"/>
-          <minimumSize width="900" height="480"/>
-          <preferredSize width="900" height="480"/>
+          <maximumSize width="1200" height="480"/>
+          <minimumSize width="1200" height="480"/>
+          <preferredSize width="1200" height="480"/>
           <tabPlacement value="3"/>
         </properties>
         <border type="none"/>
@@ -767,9 +767,9 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="7d484" class="javax.swing.JTextField">
+                      <component id="7d484" class="javax.swing.JTextField" binding="pretraziPolje">
                         <constraints>
-                          <grid row="0" column="6" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="0" column="6" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                           <gridbag weightx="1.0" weighty="0.0"/>
@@ -829,10 +829,10 @@
                         </constraints>
                         <properties>
                           <foreground color="-5385026"/>
-                          <text value="ID Zaposlenika"/>
+                          <text value="ID ZA UREDITI"/>
                         </properties>
                       </component>
-                      <component id="5ba96" class="javax.swing.JTextField">
+                      <component id="5ba96" class="javax.swing.JTextField" binding="uzIdZaUreditiPolje">
                         <constraints>
                           <grid row="4" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -842,8 +842,8 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
                       <component id="af408" class="javax.swing.JLabel">
@@ -856,7 +856,7 @@
                           <text value="Ime"/>
                         </properties>
                       </component>
-                      <component id="8841c" class="javax.swing.JTextField">
+                      <component id="8841c" class="javax.swing.JTextField" binding="uzImePolje">
                         <constraints>
                           <grid row="6" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -866,8 +866,8 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
                       <component id="88d2" class="javax.swing.JLabel">
@@ -880,7 +880,7 @@
                           <text value="Prezime"/>
                         </properties>
                       </component>
-                      <component id="6c9d3" class="javax.swing.JTextField">
+                      <component id="6c9d3" class="javax.swing.JTextField" binding="uzPrezime">
                         <constraints>
                           <grid row="8" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -890,8 +890,8 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
                       <component id="239bb" class="javax.swing.JLabel">
@@ -914,7 +914,7 @@
                           <text value="E-mail"/>
                         </properties>
                       </component>
-                      <component id="57fe3" class="javax.swing.JTextField">
+                      <component id="57fe3" class="javax.swing.JTextField" binding="uzEmailPolje">
                         <constraints>
                           <grid row="12" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -924,11 +924,11 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
-                      <component id="d9a92" class="javax.swing.JTextField">
+                      <component id="d9a92" class="javax.swing.JTextField" binding="uzDobPolje">
                         <constraints>
                           <grid row="10" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -938,8 +938,8 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
                       <component id="c8154" class="javax.swing.JLabel">
@@ -962,7 +962,7 @@
                           <text value="Adresa"/>
                         </properties>
                       </component>
-                      <component id="bf4fe" class="javax.swing.JTextField">
+                      <component id="bf4fe" class="javax.swing.JTextField" binding="uzKontaktPolje">
                         <constraints>
                           <grid row="14" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -972,11 +972,11 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
-                      <component id="ed285" class="javax.swing.JTextField">
+                      <component id="ed285" class="javax.swing.JTextField" binding="uzAdresaPolje">
                         <constraints>
                           <grid row="16" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -986,8 +986,8 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
                       <component id="bd56c" class="javax.swing.JLabel">
@@ -1060,7 +1060,7 @@
                           <text value="Status"/>
                         </properties>
                       </component>
-                      <component id="40eaf" class="javax.swing.JTextField">
+                      <component id="40eaf" class="javax.swing.JTextField" binding="uzHNPolje">
                         <constraints>
                           <grid row="4" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -1070,11 +1070,11 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
-                      <component id="96b12" class="javax.swing.JTextField">
+                      <component id="96b12" class="javax.swing.JTextField" binding="uzPostalPolje">
                         <constraints>
                           <grid row="6" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -1084,11 +1084,11 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
-                      <component id="dd012" class="javax.swing.JTextField">
+                      <component id="dd012" class="javax.swing.JTextField" binding="uzOdjelPolje">
                         <constraints>
                           <grid row="8" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -1098,11 +1098,11 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
-                      <component id="7aa03" class="javax.swing.JTextField">
+                      <component id="7aa03" class="javax.swing.JTextField" binding="uzPlataPolje">
                         <constraints>
                           <grid row="12" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -1112,11 +1112,11 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
-                      <component id="d947f" class="javax.swing.JTextField">
+                      <component id="d947f" class="javax.swing.JTextField" binding="uzNRMPolje">
                         <constraints>
                           <grid row="14" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -1126,11 +1126,11 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
-                      <component id="539b3" class="javax.swing.JTextField">
+                      <component id="539b3" class="javax.swing.JTextField" binding="uzStatusPolje">
                         <constraints>
                           <grid row="16" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -1140,8 +1140,8 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
                       <grid id="f22ed" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -1355,7 +1355,7 @@
                         <border type="none"/>
                         <children/>
                       </grid>
-                      <component id="9239c" class="javax.swing.JTextField">
+                      <component id="9239c" class="javax.swing.JTextField" binding="uzDatumPolje">
                         <constraints>
                           <grid row="10" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
@@ -1365,8 +1365,8 @@
                         <properties>
                           <background color="-12086421"/>
                           <maximumSize width="50" height="35"/>
-                          <minimumSize width="50" height="20"/>
-                          <preferredSize width="50" height="20"/>
+                          <minimumSize width="50" height="25"/>
+                          <preferredSize width="50" height="25"/>
                         </properties>
                       </component>
                       <grid id="10f1" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -1412,9 +1412,9 @@
                         <border type="none"/>
                         <children/>
                       </grid>
-                      <component id="bb158" class="javax.swing.JButton">
+                      <component id="bb158" class="javax.swing.JButton" binding="uzUpdateButton">
                         <constraints>
-                          <grid row="18" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="18" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
@@ -1427,10 +1427,10 @@
                           <text value="Update"/>
                         </properties>
                       </component>
-                      <component id="ca9cf" class="javax.swing.JButton" default-binding="true">
+                      <component id="ca9cf" class="javax.swing.JButton" binding="uzClearButton">
                         <constraints>
-                          <grid row="18" column="8" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                          <gridbag weightx="0.0" weighty="0.0"/>
+                          <grid row="18" column="7" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag top="0" left="0" bottom="0" right="90" weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
                           <background color="-11699354"/>
@@ -1468,9 +1468,9 @@
             </constraints>
             <properties>
               <maximumSize width="800" height="400"/>
-              <minimumSize width="800" height="400"/>
+              <minimumSize width="1200" height="400"/>
               <opaque value="false"/>
-              <preferredSize width="800" height="400"/>
+              <preferredSize width="1200" height="400"/>
             </properties>
             <border type="none"/>
             <children>
@@ -1499,8 +1499,8 @@
                       <opaque value="true"/>
                       <preferredScrollableViewportSize width="450" height="400"/>
                       <preferredSize width="800" height="400"/>
-                      <selectionBackground color="-328966"/>
-                      <selectionForeground color="-15983854"/>
+                      <selectionBackground color="-15123929"/>
+                      <selectionForeground color="-5385026"/>
                     </properties>
                   </component>
                 </children>
