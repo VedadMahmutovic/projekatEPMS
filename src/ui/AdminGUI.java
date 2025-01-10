@@ -6,7 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
-public class MenuGUI extends JFrame {
+public class AdminGUI extends JFrame {
     private JPanel glavniPanel;
     private JPanel platePanel;
     private JPanel izvjestajPanel;
@@ -30,10 +30,9 @@ public class MenuGUI extends JFrame {
     private JButton izvjestajZaposlenikaButton;
     private JButton podesiPlatuButton;
     private JButton promjeniSifruButton;
-    private JButton upravljanjeKorisnicimaButton;
 
 
-    public MenuGUI() {
+    public AdminGUI() {
         setTitle("Menu - Employee Payroll Management System");
 
         // Gradient background setup
@@ -56,10 +55,19 @@ public class MenuGUI extends JFrame {
         gradientPanel.setLayout(new BorderLayout());
         gradientPanel.add(glavniPanel, BorderLayout.CENTER);
 
+        // Rounded borders and transparency
         setupPanelBorders();
+
+        // Button Hover and Click Effects
         setupButtonEffects();
+
+        // Logout Button Logic with Confirmation Dialog
         setupLogoutButton();
+
+        // Replace Icons Dynamically
         replaceIcons();
+
+        // Scale Button Icons on Resize
         scaleIconsOnResize();
 
         setContentPane(gradientPanel);
@@ -79,11 +87,13 @@ public class MenuGUI extends JFrame {
         izvjestajZaposlenikaButton.addActionListener(e -> openIzvjestajZapBackPanel());
 
         podesiPlatuButton.addActionListener(e -> openPodesavanjePlataBackPanel());
-        promjeniSifruButton.addActionListener(e -> openSuperAdminPassChngeBackPanel());
-        upravljanjeKorisnicimaButton.addActionListener(e -> openSAdminUsersBackPanel());
+        promjeniSifruButton.addActionListener(e -> openPasswordChangeBackPanel());
 
     }
 
+    /**
+     * Set up rounded borders and transparency for panels.
+     */
     private void setupPanelBorders() {
         zaposleniciPanel.setBorder(new RoundedBorder(20));
         zaposleniciPanel.setOpaque(false);
@@ -95,6 +105,9 @@ public class MenuGUI extends JFrame {
         zadnjiPanel.setOpaque(false);
     }
 
+    /**
+     * Add hover and click effects to buttons.
+     */
     private void setupButtonEffects() {
         Color defaultColor = Color.decode("#1C3A28");
         Color hoverColor = defaultColor.brighter();
@@ -150,6 +163,9 @@ public class MenuGUI extends JFrame {
         });
     }
 
+    /**
+     * Add logout confirmation dialog.
+     */
     private void setupLogoutButton() {
         odjavaButton.addActionListener(e -> {
             int confirmed = JOptionPane.showConfirmDialog(
@@ -169,7 +185,9 @@ public class MenuGUI extends JFrame {
         });
     }
 
-
+    /**
+     * Replace JLabel placeholders with ResizableIconLabel.
+     */
     private void replaceIcons() {
         replaceWithResizableIcon(zaposlenikLabel, "/ikone/IkonaZaposlenik.png");
         replaceWithResizableIcon(plataLabel, "/ikone/IkonaCash.png");
@@ -196,7 +214,6 @@ public class MenuGUI extends JFrame {
 
                 scaleIconWithButton(podesiPlatuButton, "/ikone/plus.png");
                 scaleIconWithButton(promjeniSifruButton, "/ikone/plus.png");
-                scaleIconWithButton(upravljanjeKorisnicimaButton, "/ikone/plus.png");
             }
         });
     }
@@ -305,21 +322,10 @@ public class MenuGUI extends JFrame {
         });
     }
 
-    private void openSuperAdminPassChngeBackPanel() {
+    private void openPasswordChangeBackPanel() {
         SwingUtilities.invokeLater(() -> {
             JFrame pregledFrame = new JFrame("Pregled Isplata");
-            pregledFrame.setContentPane(new IzvjestajGUI().superAdminPassChngeBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openSAdminUsersBackPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Pregled Isplata");
-            pregledFrame.setContentPane(new SAdminUsersGUI().sAdminUsersBackPanel);
+            pregledFrame.setContentPane(new IzvjestajGUI().passwordChangeBackPanel);
             pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             pregledFrame.pack();
             pregledFrame.setLocationRelativeTo(null);

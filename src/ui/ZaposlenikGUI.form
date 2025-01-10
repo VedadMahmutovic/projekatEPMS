@@ -20,7 +20,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="7fbb6" binding="backgroundPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+          <grid id="7fbb6" binding="backgroundPanel" layout-manager="GridBagLayout">
             <constraints>
               <tabbedpane title="Dodaj Zap"/>
             </constraints>
@@ -33,7 +33,10 @@
             <border type="none"/>
             <children>
               <grid id="53547" binding="dodajZaposlenikaPanel" layout-manager="GridBagLayout">
-                <constraints/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
                 <properties>
                   <background color="-16435670"/>
                   <minimumSize width="800" height="400"/>
@@ -745,7 +748,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <grid id="17f5f" binding="urediZapBackPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+              <grid id="17f5f" binding="urediZapBackPanel" layout-manager="GridBagLayout">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -758,7 +761,10 @@
                 <border type="none"/>
                 <children>
                   <grid id="772c3" binding="urediZapPanel" layout-manager="GridBagLayout">
-                    <constraints/>
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
                     <properties>
                       <background color="-16435670"/>
                       <minimumSize width="800" height="400"/>
@@ -785,7 +791,7 @@
                       <grid id="80daa" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="2" column="1" row-span="1" col-span="14" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <grid row="2" column="1" row-span="1" col-span="15" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
@@ -812,7 +818,7 @@
                       <grid id="b15a4" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="0" column="14" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <grid row="0" column="15" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
@@ -940,6 +946,7 @@
                           <maximumSize width="50" height="35"/>
                           <minimumSize width="50" height="25"/>
                           <preferredSize width="50" height="25"/>
+                          <text value=""/>
                         </properties>
                       </component>
                       <component id="c8154" class="javax.swing.JLabel">
@@ -1062,7 +1069,7 @@
                       </component>
                       <component id="40eaf" class="javax.swing.JTextField" binding="uzHNPolje">
                         <constraints>
-                          <grid row="4" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="4" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                           <gridbag weightx="0.0" weighty="0.0"/>
@@ -1076,7 +1083,7 @@
                       </component>
                       <component id="96b12" class="javax.swing.JTextField" binding="uzPostalPolje">
                         <constraints>
-                          <grid row="6" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="6" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                           <gridbag weightx="0.0" weighty="0.0"/>
@@ -1090,7 +1097,7 @@
                       </component>
                       <component id="dd012" class="javax.swing.JTextField" binding="uzOdjelPolje">
                         <constraints>
-                          <grid row="8" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="8" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                           <gridbag weightx="0.0" weighty="0.0"/>
@@ -1104,7 +1111,7 @@
                       </component>
                       <component id="7aa03" class="javax.swing.JTextField" binding="uzPlataPolje">
                         <constraints>
-                          <grid row="12" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="12" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                           <gridbag weightx="0.0" weighty="0.0"/>
@@ -1118,7 +1125,7 @@
                       </component>
                       <component id="d947f" class="javax.swing.JTextField" binding="uzNRMPolje">
                         <constraints>
-                          <grid row="14" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="14" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                           <gridbag weightx="0.0" weighty="0.0"/>
@@ -1132,7 +1139,7 @@
                       </component>
                       <component id="539b3" class="javax.swing.JTextField" binding="uzStatusPolje">
                         <constraints>
-                          <grid row="16" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="16" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                           <gridbag weightx="0.0" weighty="0.0"/>
@@ -1162,7 +1169,7 @@
                       <grid id="67af8" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="10" column="15" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <grid row="10" column="16" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
@@ -1205,7 +1212,7 @@
                       <grid id="9b4f0" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="17" column="12" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <grid row="17" column="13" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
@@ -1344,7 +1351,7 @@
                       <grid id="8d51" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                         <margin top="0" left="0" bottom="0" right="0"/>
                         <constraints>
-                          <grid row="17" column="9" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <grid row="17" column="10" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                           <gridbag weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
@@ -1357,7 +1364,7 @@
                       </grid>
                       <component id="9239c" class="javax.swing.JTextField" binding="uzDatumPolje">
                         <constraints>
-                          <grid row="10" column="8" row-span="1" col-span="7" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                          <grid row="10" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                             <preferred-size width="150" height="-1"/>
                           </grid>
                           <gridbag weightx="0.0" weighty="0.0"/>
@@ -1367,6 +1374,7 @@
                           <maximumSize width="50" height="35"/>
                           <minimumSize width="50" height="25"/>
                           <preferredSize width="50" height="25"/>
+                          <text value=""/>
                         </properties>
                       </component>
                       <grid id="10f1" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -1429,7 +1437,7 @@
                       </component>
                       <component id="ca9cf" class="javax.swing.JButton" binding="uzClearButton">
                         <constraints>
-                          <grid row="18" column="7" row-span="1" col-span="6" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <grid row="18" column="7" row-span="1" col-span="7" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                           <gridbag top="0" left="0" bottom="0" right="90" weightx="0.0" weighty="0.0"/>
                         </constraints>
                         <properties>
@@ -1451,6 +1459,37 @@
                           <minimumSize width="100" height="20"/>
                           <opaque value="false"/>
                           <preferredSize width="105" height="20"/>
+                        </properties>
+                        <border type="none"/>
+                        <children/>
+                      </grid>
+                      <component id="c2822" class="javax.swing.JButton" binding="pretraziButton">
+                        <constraints>
+                          <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                        <properties>
+                          <background color="-16435670"/>
+                          <borderPainted value="false"/>
+                          <focusPainted value="false"/>
+                          <icon value="ikone/SearchIkona.png"/>
+                          <maximumSize width="30" height="30"/>
+                          <minimumSize width="30" height="30"/>
+                          <opaque value="false"/>
+                          <preferredSize width="30" height="30"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <grid id="d0371" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="0" column="9" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                        <properties>
+                          <minimumSize width="10" height="10"/>
+                          <opaque value="false"/>
+                          <preferredSize width="10" height="10"/>
                         </properties>
                         <border type="none"/>
                         <children/>

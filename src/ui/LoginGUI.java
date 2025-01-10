@@ -4,7 +4,6 @@ import dao.UserDAO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LoginGUI extends JFrame {
 
@@ -19,6 +18,9 @@ public class LoginGUI extends JFrame {
     private JPanel mainLoginPanel;
     private JRadioButton superAdminButton;
 
+    // Static field to store the logged-in user
+    public static String loggedInUser;
+
     public LoginGUI() {
         setTitle("Login - Employee Payroll Management System");
         setContentPane(loginPanel); // Glavni panel iz GUI Designera
@@ -26,9 +28,7 @@ public class LoginGUI extends JFrame {
         setSize(400, 300); // Veličina prozora
         setLocationRelativeTo(null); // Centriraj prozor
 
-        //Izgled
-
-        //Background
+        // Background
         loginPanel.setOpaque(false); // Omogućava transparentnost za crtanje pozadine
         JPanel gradientPanel = new JPanel() {
             @Override
@@ -47,7 +47,7 @@ public class LoginGUI extends JFrame {
             }
         };
 
-        //Border
+        // Border
         mainLoginPanel.setBorder(new RoundedBorder(20));
         mainLoginPanel.setOpaque(false);
 
@@ -65,63 +65,61 @@ public class LoginGUI extends JFrame {
 
         setContentPane(gradientPanel); // Postavi gradientPanel kao glavni sadržaj
 
-        // Dodaj funkcionalnost Login dugmeta
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = imePolje.getText();
-                String password = new String(passwordPolje.getPassword());
-                String role = null;
+        // Add functionality to the login button
+        login.addActionListener(this::performLogin);
+    }
 
-                // Check which radio button is selected
-                if (adminButton.isSelected()) {
-                    role = "Admin";
-                } else if (managerButton.isSelected()) {
-                    role = "Manager";
-                } else if (employeeButton.isSelected()) {
-                    role = "Employee";
-                } else if (superAdminButton.isSelected()) {
-                    role = "Super Admin"; // Add Super Admin role
-                }
+    private void performLogin(ActionEvent e) {
+        String username = imePolje.getText();
+        String password = new String(passwordPolje.getPassword());
+        String role = determineSelectedRole();
 
-                // If no role is selected, show an error message
-                if (role == null) {
-                    JOptionPane.showMessageDialog(null, "Please select a role.");
-                    return; // Prevent further action if no role is selected
-                }
+        if (role == null) {
+            JOptionPane.showMessageDialog(this, "Please select a role.");
+            return;
+        }
 
-                // Authenticate user
-                UserDAO userDAO = new UserDAO();
-                if (userDAO.authenticate(username, password, role)) {
-                    JOptionPane.showMessageDialog(null, "Login successful!");
-                    dispose(); // Close the Login window
+        // Authenticate user
+        UserDAO userDAO = new UserDAO();
+        if (userDAO.authenticate(username, password, role)) {
+            loggedInUser = username; // Save the logged-in user
+            JOptionPane.showMessageDialog(this, "Login successful!");
+            dispose(); // Close the Login window
+            openRoleSpecificMenu(role);
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid username, password, or role.");
+        }
+    }
 
-                    // Check for the Super Admin role and proceed to MenuGUI only for Super Admin
-                    if ("Super Admin".equals(role)) {
-                        MenuGUI menuGUI = new MenuGUI();
-                        menuGUI.setVisible(true);
-                    } /*else {
-                        // Open a different GUI for Admin, Manager, or Employee
-                        // You can create different classes for each role
-                        switch (role) {
-                            case "Admin":
-                                AdminGUI adminGUI = new AdminGUI();
-                                adminGUI.setVisible(true);
-                                break;
-                            case "Manager":
-                                ManagerGUI managerGUI = new ManagerGUI();
-                                managerGUI.setVisible(true);
-                                break;
-                            case "Employee":
-                                EmployeeGUI employeeGUI = new EmployeeGUI();
-                                employeeGUI.setVisible(true);
-                                break;
-                        }
-                    }*/
-                } else {
-                    JOptionPane.showMessageDialog(null, "Invalid username, password, or role.");
-                }
-            }
-        });
+    private String determineSelectedRole() {
+        if (adminButton.isSelected()) {
+            return "Admin";
+        } else if (managerButton.isSelected()) {
+            return "Manager";
+        } else if (employeeButton.isSelected()) {
+            return "Employee";
+        } else if (superAdminButton.isSelected()) {
+            return "Super Admin"; // Add Super Admin role
+        }
+        return null; // No role selected
+    }
+
+    private void openRoleSpecificMenu(String role) {
+        switch (role) {
+            case "Admin":
+                new AdminGUI().setVisible(true);
+                break;
+            case "Manager":
+                new ManagerGUI().setVisible(true);
+                break;
+            case "Employee":
+                new EmployeeGUI().setVisible(true);
+                break;
+            case "Super Admin":
+                new MenuGUI().setVisible(true); // Super Admin uses MenuGUI
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid role: " + role);
+        }
     }
 }

@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.RenderingHints;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -36,12 +37,14 @@ public class ZaposlenikGUI extends JFrame {
 
     private JButton uzUpdateButton;
     private JButton uzClearButton;
+    private JButton pretraziButton;
 
     // Konstruktor GUI
     public ZaposlenikGUI() {
         setupUI();
         addListeners();
         loadEmployeeTable();
+        scaleIconsOnResize();
     }
 
     // Method for styling buttons
@@ -201,6 +204,10 @@ public class ZaposlenikGUI extends JFrame {
                 }
             }
         });
+
+
+
+        pretraziButton.addActionListener(e -> searchEmployees(pretraziPolje.getText()));
 
         // Add delete button functionality
         deleteButton.addActionListener(e -> {
@@ -493,6 +500,43 @@ public class ZaposlenikGUI extends JFrame {
         uzPlataPolje.setText("");
         uzNRMPolje.setText("");
         uzStatusPolje.setText("");
+    }
+
+    private void scaleIconWithButton(JButton button, String iconPath) {
+        URL iconURL = getClass().getResource(iconPath);
+        if (iconURL != null) {
+            ImageIcon originalIcon = new ImageIcon(iconURL);
+            button.addComponentListener(new java.awt.event.ComponentAdapter() {
+                @Override
+                public void componentResized(java.awt.event.ComponentEvent e) {
+                    int width = button.getWidth();
+                    int height = button.getHeight();
+                    if (width > 0 && height > 0) {
+                        Image scaledImage = originalIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+                        button.setIcon(new ImageIcon(scaledImage));
+                    }
+                }
+            });
+            // Set initial icon scaling
+            int initialWidth = button.getWidth();
+            int initialHeight = button.getHeight();
+            if (initialWidth > 0 && initialHeight > 0) {
+                Image initialScaledImage = originalIcon.getImage().getScaledInstance(initialWidth, initialHeight, Image.SCALE_SMOOTH);
+                button.setIcon(new ImageIcon(initialScaledImage));
+            }
+        } else {
+            System.err.println("Icon not found at path: " + iconPath);
+        }
+    }
+
+
+    private void scaleIconsOnResize() {
+        pretraziButton.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                scaleIconWithButton(pretraziButton, "/ikone/SearchIkona.png");
+
+            }
+        });
     }
 
     public static void main(String[] args) {

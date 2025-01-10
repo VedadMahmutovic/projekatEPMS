@@ -65,4 +65,9 @@ public class Payroll {
     public void setPayDate(String payDate) {
         this.payDate = payDate;
     }
+
+    // Novi metod za izračun ukupne plate
+    public double calculateTotalSalary() {
+        return salary + bonus - deductions - tax;
+    }
 }

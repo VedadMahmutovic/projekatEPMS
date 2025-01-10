@@ -52,7 +52,7 @@
                   <hideActionText class="java.lang.Boolean" value="false"/>
                 </clientProperties>
               </component>
-              <component id="a6e9c" class="javax.swing.JRadioButton" binding="employeeButton">
+              <component id="a6e9c" class="javax.swing.JRadioButton" binding="managerButton">
                 <constraints>
                   <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                   <gridbag weightx="0.0" weighty="1.0"/>
@@ -62,7 +62,7 @@
                   <text value=""/>
                 </properties>
               </component>
-              <component id="9dc16" class="javax.swing.JRadioButton" binding="managerButton">
+              <component id="9dc16" class="javax.swing.JRadioButton" binding="employeeButton">
                 <constraints>
                   <grid row="0" column="14" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="67" height="25"/>
@@ -91,7 +91,7 @@
                 </constraints>
                 <properties>
                   <foreground color="-328966"/>
-                  <text value="Employee"/>
+                  <text value="Manager"/>
                 </properties>
               </component>
               <component id="4952c" class="javax.swing.JLabel">
@@ -101,7 +101,7 @@
                 </constraints>
                 <properties>
                   <foreground color="-328966"/>
-                  <text value="Manager"/>
+                  <text value="Employee"/>
                 </properties>
               </component>
               <grid id="12ec7" layout-manager="GridBagLayout">
