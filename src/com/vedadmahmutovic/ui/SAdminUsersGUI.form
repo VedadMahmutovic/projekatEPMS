@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.vedadmahmutovic.ui.SAdminUsersGUI">
+  <grid id="27dc6" binding="sAdminUsersBackPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="904" height="504"/>
+    </constraints>
+    <properties>
+      <background color="-14200008"/>
+      <minimumSize width="904" height="504"/>
+      <preferredSize width="904" height="504"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="e568c" binding="urediZapPanel" layout-manager="GridBagLayout">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16435670"/>
+          <minimumSize width="800" height="400"/>
+          <opaque value="true"/>
+          <preferredSize width="800" height="400"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="bb252" class="javax.swing.JTextField" binding="pretraziPolje">
+            <constraints>
+              <grid row="0" column="6" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <gridbag weightx="1.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-12086421"/>
+              <maximumSize width="50" height="55"/>
+              <minimumSize width="49" height="30"/>
+              <opaque value="true"/>
+              <preferredSize width="49" height="30"/>
+            </properties>
+          </component>
+          <grid id="6ed34" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="15" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-328966"/>
+              <maximumSize width="20" height="2"/>
+              <minimumSize width="20" height="2"/>
+              <opaque value="true"/>
+              <preferredSize width="20" height="2"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <component id="3ddc4" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="0" left="80" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <font size="18" style="1"/>
+              <foreground color="-5385026"/>
+              <text value="S E A R C H   U S E R S:"/>
+            </properties>
+          </component>
+          <grid id="77865" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="15" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <opaque value="false"/>
+              <preferredSize width="100" height="24"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <component id="e3a0a" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <foreground color="-5385026"/>
+              <text value="ID"/>
+            </properties>
+          </component>
+          <component id="30d8c" class="javax.swing.JTextField" binding="userIdField">
+            <constraints>
+              <grid row="4" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-12086421"/>
+              <maximumSize width="230" height="35"/>
+              <minimumSize width="230" height="25"/>
+              <preferredSize width="230" height="25"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="f2b7e" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <foreground color="-5385026"/>
+              <text value="Ime (Unique)"/>
+            </properties>
+          </component>
+          <component id="845bc" class="javax.swing.JTextField" binding="userImeField">
+            <constraints>
+              <grid row="6" column="3" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-12086421"/>
+              <maximumSize width="230" height="35"/>
+              <minimumSize width="230" height="25"/>
+              <preferredSize width="230" height="25"/>
+            </properties>
+          </component>
+          <component id="44a11" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="4" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="0" left="80" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <foreground color="-5385026"/>
+              <text value="Password"/>
+            </properties>
+          </component>
+          <component id="d9465" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="6" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag top="0" left="80" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <foreground color="-5385026"/>
+              <text value="Uloga"/>
+            </properties>
+          </component>
+          <component id="90e2f" class="javax.swing.JTextField" binding="userPassField">
+            <constraints>
+              <grid row="4" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-12086421"/>
+              <maximumSize width="230" height="35"/>
+              <minimumSize width="230" height="25"/>
+              <preferredSize width="230" height="25"/>
+            </properties>
+          </component>
+          <component id="14f29" class="javax.swing.JComboBox" binding="ulogaComboBox">
+            <constraints>
+              <grid row="6" column="8" row-span="1" col-span="8" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-12086421"/>
+              <maximumSize width="230" height="35"/>
+              <minimumSize width="230" height="25"/>
+              <model>
+                <item value="Employee"/>
+                <item value="Manager"/>
+                <item value="Admin"/>
+              </model>
+              <preferredSize width="230" height="25"/>
+            </properties>
+          </component>
+          <grid id="5872e" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="9" column="16" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="20" height="20"/>
+              <minimumSize width="20" height="20"/>
+              <opaque value="false"/>
+              <preferredSize width="33" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="a9571" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="12" column="6" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="30" height="20"/>
+              <opaque value="false"/>
+              <preferredSize width="30" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="af2a" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="12" column="13" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <opaque value="false"/>
+              <preferredSize width="30" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="aeac6" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="24" height="20"/>
+              <opaque value="false"/>
+              <preferredSize width="20" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="f13eb" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="20" height="10"/>
+              <opaque value="false"/>
+              <preferredSize width="20" height="10"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="c246b" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="24" height="15"/>
+              <opaque value="false"/>
+              <preferredSize width="24" height="15"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="ce6a6" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="24" height="15"/>
+              <opaque value="false"/>
+              <preferredSize width="24" height="15"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="e41ed" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="24" height="15"/>
+              <opaque value="false"/>
+              <preferredSize width="24" height="15"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="61ce7" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="10" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="24" height="15"/>
+              <opaque value="false"/>
+              <preferredSize width="24" height="15"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="6a8af" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="24" height="15"/>
+              <opaque value="false"/>
+              <preferredSize width="24" height="15"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="c67c8" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="12" column="9" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="30" height="20"/>
+              <opaque value="false"/>
+              <preferredSize width="30" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="b62b6" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="12" column="4" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <maximumSize width="40" height="20"/>
+              <minimumSize width="40" height="20"/>
+              <opaque value="false"/>
+              <preferredSize width="40" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="f5328" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="7" column="7" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="15" height="15"/>
+              <opaque value="false"/>
+              <preferredSize width="15" height="15"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="7bdab" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="7" column="5" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="15" height="15"/>
+              <opaque value="false"/>
+              <preferredSize width="15" height="15"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="875a6" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="13" column="3" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="100" height="20"/>
+              <opaque value="false"/>
+              <preferredSize width="50" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <component id="5e000" class="javax.swing.JButton" binding="pretraziButton">
+            <constraints>
+              <grid row="0" column="11" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-16435670"/>
+              <borderPainted value="false"/>
+              <focusPainted value="false"/>
+              <icon value="ikone/SearchIkona.png"/>
+              <maximumSize width="30" height="30"/>
+              <minimumSize width="30" height="30"/>
+              <opaque value="false"/>
+              <preferredSize width="30" height="30"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="4956b" class="javax.swing.JButton" binding="izmjeniButton">
+            <constraints>
+              <grid row="9" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-11699354"/>
+              <foreground color="-5385026"/>
+              <maximumSize width="150" height="35"/>
+              <minimumSize width="150" height="35"/>
+              <opaque value="true"/>
+              <preferredSize width="150" height="35"/>
+              <text value="Izmjeni"/>
+            </properties>
+          </component>
+          <component id="73714" class="javax.swing.JButton" binding="dodajButton">
+            <constraints>
+              <grid row="9" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-11699354"/>
+              <foreground color="-5385026"/>
+              <maximumSize width="50" height="35"/>
+              <minimumSize width="150" height="35"/>
+              <opaque value="true"/>
+              <preferredSize width="150" height="35"/>
+              <text value="Dodaj"/>
+            </properties>
+          </component>
+          <component id="75258" class="javax.swing.JButton" binding="obrisiButton">
+            <constraints>
+              <grid row="9" column="8" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <background color="-11699354"/>
+              <foreground color="-5385026"/>
+              <minimumSize width="150" height="35"/>
+              <opaque value="true"/>
+              <preferredSize width="150" height="35"/>
+              <text value="Obrisi"/>
+            </properties>
+          </component>
+          <grid id="d75c3" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="24" height="15"/>
+              <opaque value="false"/>
+              <preferredSize width="24" height="15"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="3cc5d" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="10" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
+            <properties>
+              <minimumSize width="10" height="10"/>
+              <opaque value="false"/>
+              <preferredSize width="10" height="10"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
