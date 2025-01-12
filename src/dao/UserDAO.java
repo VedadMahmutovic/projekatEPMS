@@ -2,16 +2,13 @@ package dao;
 
 import model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
 
-    // Authenticate user with username, password, and role
+    // Autentifikacija
     public boolean authenticate(String username, String password, String userType) {
         String query = "SELECT * FROM users WHERE ime = ? AND password = ? AND role = ?";
         try (Connection conn = MySQLConnection.connect();
@@ -21,7 +18,7 @@ public class UserDAO {
             stmt.setString(3, userType);
             ResultSet rs = stmt.executeQuery();
 
-            return rs.next(); // Authentication successful if a result exists
+            return rs.next();
         } catch (SQLException e) {
             System.out.println("❌ Authentication error: " + e.getMessage());
             return false;
@@ -50,7 +47,7 @@ public class UserDAO {
         return results;
     }
 
-    // Regular user password change with current password verification
+
     public boolean changePassword(String username, String currentPassword, String newPassword) {
         String verifyQuery = "SELECT * FROM users WHERE ime = ? AND password = ?";
         String updateQuery = "UPDATE users SET password = ? WHERE ime = ?";
@@ -64,13 +61,13 @@ public class UserDAO {
             ResultSet rs = verifyStmt.executeQuery();
 
             if (rs.next()) {
-                // Current password is correct; update the password
+
                 try (PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
                     updateStmt.setString(1, newPassword);
                     updateStmt.setString(2, username);
 
                     int rowsUpdated = updateStmt.executeUpdate();
-                    return rowsUpdated > 0; // Return true if the update was successful
+                    return rowsUpdated > 0;
                 }
             } else {
                 System.out.println("❌ Incorrect current password.");
@@ -82,7 +79,6 @@ public class UserDAO {
         }
     }
 
-    // Fetch a user's name (ime) by their ID (for Super Admin functionality)
     public String getUserNameById(int userId) {
         String query = "SELECT ime FROM users WHERE ID = ?";
         try (Connection conn = MySQLConnection.connect();
@@ -96,7 +92,7 @@ public class UserDAO {
         } catch (SQLException e) {
             System.out.println("❌ Error fetching user name: " + e.getMessage());
         }
-        return null; // Return null if no user is found
+        return null;
     }
 
     // Super Admin password change by user ID
@@ -109,7 +105,7 @@ public class UserDAO {
             stmt.setInt(2, userId);
 
             int rowsUpdated = stmt.executeUpdate();
-            return rowsUpdated > 0; // Return true if the update was successful
+            return rowsUpdated > 0;
         } catch (SQLException e) {
             System.out.println("❌ Error changing password: " + e.getMessage());
             return false;
@@ -126,14 +122,14 @@ public class UserDAO {
             stmt.setString(3, role);
 
             int rowsInserted = stmt.executeUpdate();
-            return rowsInserted > 0; // Vraća true ako je korisnik uspješno dodan
+            return rowsInserted > 0; // Ovdje vraća true ako je korisnik uspješno dodan
         } catch (SQLException e) {
             System.out.println("❌ Error adding user: " + e.getMessage());
             return false;
         }
     }
 
-    // Izmjena uloge korisnika prema ID-u
+    // Izmjena uloge korisnika prema ID
     public boolean updateUserRole(int userId, String newRole) {
         String query = "UPDATE users SET role = ? WHERE id = ?";
         try (Connection conn = MySQLConnection.connect();
@@ -149,7 +145,7 @@ public class UserDAO {
         }
     }
 
-    // Izmjena imena korisnika prema ID-u
+    // Izmjena imena korisnika prema ID
     public boolean updateUserIme(int userId, String newIme) {
         String query = "UPDATE users SET ime = ? WHERE id = ?";
         try (Connection conn = MySQLConnection.connect();
@@ -158,14 +154,14 @@ public class UserDAO {
             stmt.setInt(2, userId);
 
             int rowsUpdated = stmt.executeUpdate();
-            return rowsUpdated > 0; // Return true if the update was successful
+            return rowsUpdated > 0;
         } catch (SQLException e) {
             System.out.println("❌ Error updating name: " + e.getMessage());
             return false;
         }
     }
 
-    // Brisanje korisnika prema ID-u
+    // Brisanje korisnika prema ID
     public boolean deleteUser(int userId) {
         String query = "DELETE FROM users WHERE id = ?";
         try (Connection conn = MySQLConnection.connect();
@@ -173,22 +169,10 @@ public class UserDAO {
             stmt.setInt(1, userId);
 
             int rowsDeleted = stmt.executeUpdate();
-            return rowsDeleted > 0; // Vraća true ako je korisnik uspješno obrisan
+            return rowsDeleted > 0;
         } catch (SQLException e) {
             System.out.println("❌ Error deleting user: " + e.getMessage());
             return false;
-        }
-    }
-
-    // Pregled svih korisnika
-    public ResultSet getAllUsers() {
-        String query = "SELECT id, ime, role FROM users";
-        try (Connection conn = MySQLConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            return stmt.executeQuery(); // Vraća rezultat svih korisnika
-        } catch (SQLException e) {
-            System.out.println("❌ Error fetching users: " + e.getMessage());
-            return null;
         }
     }
 
@@ -210,9 +194,6 @@ public class UserDAO {
         return results;
     }
 
-
-    // Dohvaćanje korisnika prema ID-u
-    // Updated query to include "password"
     public User getUserById(int userId) {
         String query = "SELECT id, ime, role, password FROM users WHERE id = ?";
         try (Connection conn = MySQLConnection.connect();
@@ -235,7 +216,7 @@ public class UserDAO {
         } catch (SQLException e) {
             System.out.println("❌ Error fetching user: " + e.getMessage());
         }
-        return null; // Return null explicitly if user is not found or an error occurs
+        return null;
     }
 
     public String[] getEmployeeDetailsByUsername(String username) {
@@ -268,14 +249,14 @@ public class UserDAO {
 
             if (rs.next()) {
                 return new String[]{
-                        rs.getString("Username"),       // Username
-                        rs.getString("Role"),           // Role
+                        rs.getString("Username"),
+                        rs.getString("Role"),
                         rs.getString("FirstName") + " " + rs.getString("LastName"), // Full Name
-                        rs.getString("Email"),          // Email
-                        rs.getString("Department"),     // Department
-                        rs.getString("JobTitle"),       // Job Title
-                        String.format("%.2f", rs.getDouble("BasicSalary")), // Basic Salary
-                        rs.getString("DateHired")       // Date Hired
+                        rs.getString("Email"),
+                        rs.getString("Department"),
+                        rs.getString("JobTitle"),
+                        String.format("%.2f", rs.getDouble("BasicSalary")),
+                        rs.getString("DateHired")
                 };
             }
         } catch (SQLException e) {
@@ -283,6 +264,47 @@ public class UserDAO {
             e.printStackTrace();
         }
 
-        return null; // Return null if no details are found
+        return null;
+    }
+
+    public boolean addUserAndMapToEmployee(String ime, String password, String role) {
+        String insertUserQuery = "INSERT INTO users (ime, password, role, Employee_Number) VALUES (?, ?, ?, 0)";
+        String updateUserQuery = "UPDATE users SET Employee_Number = ? WHERE id = ?";
+        String insertMappingQuery = "INSERT INTO user_employee_map (User_ID, Employee_ID) VALUES (?, ?)";
+
+        try (Connection conn = MySQLConnection.connect();
+             PreparedStatement userStmt = conn.prepareStatement(insertUserQuery, Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement updateStmt = conn.prepareStatement(updateUserQuery);
+             PreparedStatement mappingStmt = conn.prepareStatement(insertMappingQuery)) {
+
+            // Dodavanje korisnika u tabelu users
+            userStmt.setString(1, ime);
+            userStmt.setString(2, password);
+            userStmt.setString(3, role);
+            userStmt.executeUpdate();
+
+            // Dohvatanje generisanog ID
+            ResultSet generatedKeys = userStmt.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                int userId = generatedKeys.getInt(1);
+
+                // Ažuriranje polja Employee_Number
+                updateStmt.setInt(1, userId);
+                updateStmt.setInt(2, userId);
+                updateStmt.executeUpdate();
+
+                // Povezivanje u tabeli user_employee_map
+                mappingStmt.setInt(1, userId);
+                mappingStmt.setInt(2, userId);
+                mappingStmt.executeUpdate();
+
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println("❌ Error adding user and mapping: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

@@ -9,7 +9,7 @@ public class Payroll {
     private double tax;
     private String payDate;
 
-    // Getters and Setters
+    // Geteri i seteri
     public int getId() {
         return id;
     }
@@ -66,8 +66,4 @@ public class Payroll {
         this.payDate = payDate;
     }
 
-    // Novi metod za izračun ukupne plate
-    public double calculateTotalSalary() {
-        return salary + bonus - deductions - tax;
-    }
 }

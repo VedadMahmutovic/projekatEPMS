@@ -3,9 +3,7 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * GradientPanel - A reusable JPanel with gradient background.
- */
+
 public class GradientPanel extends JPanel {
     private final Color topColor;
     private final Color bottomColor;
@@ -13,7 +11,7 @@ public class GradientPanel extends JPanel {
     public GradientPanel(Color topColor, Color bottomColor) {
         this.topColor = topColor;
         this.bottomColor = bottomColor;
-        setOpaque(false); // Makes sure the background is transparent so the gradient shows
+        setOpaque(false);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Employee {
     private String jobTitle;
     private String status;
 
-    // Getters and Setters
+    // Geteri i seteri
     public int getId() {
         return id;
     }

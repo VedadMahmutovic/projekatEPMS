@@ -36,7 +36,7 @@ public class MenuGUI extends JFrame {
     public MenuGUI() {
         setTitle("Menu - Employee Payroll Management System");
 
-        // Gradient background setup
+        // Ovdje dodajem gradient na panele
         JPanel gradientPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -67,20 +67,21 @@ public class MenuGUI extends JFrame {
         setSize(1920, 1080);
         setLocationRelativeTo(null);
 
-        dodajZaposlenikaButton.addActionListener(e -> openZaposlenikGUI());
-        urediZaposlenikaButton.addActionListener(e -> openUrediZaposlenikaPanel());
+        dodajZaposlenikaButton.addActionListener(e -> openPanel("Zaposlenik - Employee Details", new ZaposlenikGUI().backgroundPanel));
         pregledZaposlenikaButton.addActionListener(e -> openPregledZaposlenikaPanel());
+        urediZaposlenikaButton.addActionListener(e -> openPanel("Uredi Zaposlenika", new ZaposlenikGUI().urediZapBackPanel));
 
-        generisiPLButton.addActionListener(e -> openGenPlatnuListuPanel());
-        obracunPLButton.addActionListener(e -> openObracunPlatePanel());
-        pregledIsplataButton.addActionListener(e -> openPregledIsplataPanel());
+        generisiPLButton.addActionListener(e -> openPanel("Platna Lista", new PlataGUI().genPlatListuBackPanel));
+        obracunPLButton.addActionListener(e -> openPanel("Obračun Plate", new PlataGUI().obracunPlateBackPanel));
+        pregledIsplataButton.addActionListener(e -> openPanel("Pregled Isplata", new PlataGUI().pregledIsplataBackPanel));
 
-        mjesecniIzvjestajPlataButton.addActionListener(e -> openMjesecniIzvjestajBackPanel());
-        izvjestajZaposlenikaButton.addActionListener(e -> openIzvjestajZapBackPanel());
+        mjesecniIzvjestajPlataButton.addActionListener(e -> openPanel("Mjesečni Izvještaj", new IzvjestajGUI().mjesecniIzvjestajBackPanel));
+        izvjestajZaposlenikaButton.addActionListener(e -> openPanel("Izvještaj Zaposlenika", new IzvjestajGUI().izvjestajZapBackPanel));
 
-        podesiPlatuButton.addActionListener(e -> openPodesavanjePlataBackPanel());
-        promjeniSifruButton.addActionListener(e -> openSuperAdminPassChngeBackPanel());
-        upravljanjeKorisnicimaButton.addActionListener(e -> openSAdminUsersBackPanel());
+        podesiPlatuButton.addActionListener(e -> openPanel("Podesavanje Plata", new IzvjestajGUI().podesavanjePlataBackPanel));
+        promjeniSifruButton.addActionListener(e -> openPanel("Promjena Šifre", new IzvjestajGUI().superAdminPassChngeBackPanel));
+        upravljanjeKorisnicimaButton.addActionListener(e -> openPanel("Upravljanje Korisnicima", new SAdminUsersGUI().sAdminUsersBackPanel));
+
 
     }
 
@@ -160,14 +161,22 @@ public class MenuGUI extends JFrame {
             );
 
             if (confirmed == JOptionPane.YES_OPTION) {
+                // Ovaj dio koda zatvori sve otvorene prozore
+                for (Window window : Window.getWindows()) {
+                    if (window instanceof JFrame) {
+                        window.dispose();
+                    }
+                }
+
+                // Ovdje se prikazuje LoginGUI prozor
                 SwingUtilities.invokeLater(() -> {
-                    dispose();
-                    JFrame loginFrame = new LoginGUI(); // Assuming LoginGUI exists
+                    JFrame loginFrame = new LoginGUI();
                     loginFrame.setVisible(true);
                 });
             }
         });
     }
+
 
 
     private void replaceIcons() {
@@ -177,9 +186,6 @@ public class MenuGUI extends JFrame {
         replaceWithResizableIcon(settingsLabel, "/ikone/IkonaCog.png");
     }
 
-    /**
-     * Scale icons when buttons are resized.
-     */
     private void scaleIconsOnResize() {
         dodajZaposlenikaButton.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
@@ -201,20 +207,18 @@ public class MenuGUI extends JFrame {
         });
     }
 
-    private void openZaposlenikGUI() {
+
+    private void openPanel(String title, JPanel panel) {
         SwingUtilities.invokeLater(() -> {
-            JFrame zaposleniFrame = new JFrame("Zaposlenik - Employee Details");
-            zaposleniFrame.setContentPane(new ZaposlenikGUI().backgroundPanel);
-            zaposleniFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            zaposleniFrame.pack();
-            zaposleniFrame.setLocationRelativeTo(null);
-            zaposleniFrame.setVisible(true);
+            JFrame frame = new JFrame(title);
+            frame.setContentPane(panel);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame.pack();
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
         });
     }
 
-    /**
-     * Opens the pregledZapPanel when pregledZaposlenikaButton is clicked.
-     */
     private void openPregledZaposlenikaPanel() {
         SwingUtilities.invokeLater(() -> {
             JFrame pregledFrame = new JFrame("Pregled Zaposlenika");
@@ -226,106 +230,6 @@ public class MenuGUI extends JFrame {
         });
     }
 
-
-
-    private void openUrediZaposlenikaPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Uredi Zaposlenika");
-            pregledFrame.setContentPane(new ZaposlenikGUI().urediZapBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openGenPlatnuListuPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Platna Lista");
-            pregledFrame.setContentPane(new PlataGUI().genPlatListuBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openObracunPlatePanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Obracun Plate");
-            pregledFrame.setContentPane(new PlataGUI().obracunPlateBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openPregledIsplataPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Pregled Isplata");
-            pregledFrame.setContentPane(new PlataGUI().pregledIsplataBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openMjesecniIzvjestajBackPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Mjesecni Izvjestaj");
-            pregledFrame.setContentPane(new IzvjestajGUI().mjesecniIzvjestajBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openIzvjestajZapBackPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Pregled Isplata");
-            pregledFrame.setContentPane(new IzvjestajGUI().izvjestajZapBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openPodesavanjePlataBackPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Pregled Isplata");
-            pregledFrame.setContentPane(new IzvjestajGUI().podesavanjePlataBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openSuperAdminPassChngeBackPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Pregled Isplata");
-            pregledFrame.setContentPane(new IzvjestajGUI().superAdminPassChngeBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
-
-    private void openSAdminUsersBackPanel() {
-        SwingUtilities.invokeLater(() -> {
-            JFrame pregledFrame = new JFrame("Pregled Isplata");
-            pregledFrame.setContentPane(new SAdminUsersGUI().sAdminUsersBackPanel);
-            pregledFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            pregledFrame.pack();
-            pregledFrame.setLocationRelativeTo(null);
-            pregledFrame.setVisible(true);
-        });
-    }
 
 
     private void replaceWithResizableIcon(JLabel label, String imagePath) {

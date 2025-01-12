@@ -32,7 +32,7 @@ public class SAdminUsersGUI {
 
         scaleIconsOnResize();
 
-        // Style components
+
         setupRoundedPanel(urediZapPanel);
         setupRoundedTextField(pretraziPolje);
         setupRoundedTextField(userIdField);
@@ -43,7 +43,6 @@ public class SAdminUsersGUI {
         setupRoundedButton(obrisiButton);
         setupRoundedButton(izmjeniButton);
 
-        // Add Action Listeners
         pretraziButton.addActionListener(e -> izvrsiPretragu());
         pretraziPolje.addKeyListener(new KeyAdapter() {
             @Override
@@ -66,11 +65,9 @@ public class SAdminUsersGUI {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Draw rounded background
                 g2.setColor(c.getBackground());
                 g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 20, 20);
 
-                // Draw button text
                 g2.setColor(c.getForeground());
                 FontMetrics fm = g2.getFontMetrics();
                 String text = ((JButton) c).getText();
@@ -80,7 +77,6 @@ public class SAdminUsersGUI {
                 int y = (c.getHeight() + textHeight) / 2 - 2;
                 g2.drawString(text, x, y);
 
-                // Draw rounded border
                 g2.setColor(c.getForeground());
                 g2.drawRoundRect(0, 0, c.getWidth() - 1, c.getHeight() - 1, 20, 20);
 
@@ -88,16 +84,16 @@ public class SAdminUsersGUI {
             }
         });
 
-        // Remove default button visuals
+
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
 
-        // Set default colors
+
         button.setBackground(Color.decode("#4D7B66"));
         button.setForeground(Color.decode("#DDF5E5"));
 
-        // Add hover effects
+
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
@@ -121,17 +117,14 @@ public class SAdminUsersGUI {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Draw rounded background
                 g2.setColor(textField.getBackground());
                 g2.fillRoundRect(0, 0, textField.getWidth(), textField.getHeight(), 10, 10);
 
-                // Draw rounded border
                 g2.setColor(Color.LIGHT_GRAY);
                 g2.drawRoundRect(0, 0, textField.getWidth() - 1, textField.getHeight() - 1, 10, 10);
 
                 g2.dispose();
 
-                // Let Swing handle text rendering
                 super.paintSafely(g);
             }
         });
@@ -150,10 +143,10 @@ public class SAdminUsersGUI {
         List<Object[]> results;
 
         if (searchQuery.isEmpty()) {
-            // If no search query, fetch all users
+
             results = userDAO.getAllUsersAsList();
         } else {
-            // Fetch filtered results based on search query
+
             results = userDAO.searchUsersByNameOrRole(searchQuery);
         }
 
@@ -191,24 +184,28 @@ public class SAdminUsersGUI {
         String password = userPassField.getText().trim();
         String role = (String) ulogaComboBox.getSelectedItem();
 
+        // Validacija unosa
         if (ime.isEmpty() || password.isEmpty() || role == null) {
             JOptionPane.showMessageDialog(null, "Molimo popunite sva polja.", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        boolean success = userDAO.addUser(ime, password, role);
+        // Poziv metode iz UserDAO
+        boolean success = userDAO.addUserAndMapToEmployee(ime, password, role);
 
+        // Povratne informacije korisniku
         if (success) {
-            JOptionPane.showMessageDialog(null, "Korisnik uspješno dodan.", "Uspjeh", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Korisnik uspešno dodat i povezan sa zaposlenikom.", "Uspjeh", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "Došlo je do greške pri dodavanju korisnika.", "Greška", JOptionPane.ERROR_MESSAGE);
         }
     }
 
 
+
     private void izmjeniKorisnika() {
         try {
-            // Validate ID input
+
             String idText = userIdField.getText().trim();
             if (idText.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Molimo unesite ID korisnika.", "Greška", JOptionPane.ERROR_MESSAGE);
@@ -217,7 +214,6 @@ public class SAdminUsersGUI {
 
             int userId = Integer.parseInt(idText);
 
-            // Collect new values from fields
             String ime = userImeField.getText().trim();
             String password = userPassField.getText().trim();
             String role = (String) ulogaComboBox.getSelectedItem();
@@ -227,7 +223,6 @@ public class SAdminUsersGUI {
                 return;
             }
 
-            // Execute updates based on filled fields
             boolean success = false;
 
             if (!ime.isEmpty()) {
@@ -240,7 +235,6 @@ public class SAdminUsersGUI {
                 success |= userDAO.updateUserRole(userId, role);
             }
 
-            // Provide user feedback
             if (success) {
                 JOptionPane.showMessageDialog(null, "Korisnik uspješno izmijenjen.", "Uspjeh", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -257,7 +251,7 @@ public class SAdminUsersGUI {
 
     private void obrisiKorisnika() {
         try {
-            // Validate ID input
+
             String idText = userIdField.getText().trim();
             if (idText.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Molimo unesite ID korisnika.", "Greška", JOptionPane.ERROR_MESSAGE);
@@ -266,10 +260,9 @@ public class SAdminUsersGUI {
 
             int userId = Integer.parseInt(idText);
 
-            // Fetch user details
             User user = userDAO.getUserById(userId);
             if (user != null) {
-                // Show confirmation dialog
+
                 int confirm = JOptionPane.showConfirmDialog(
                         null,
                         String.format("Da li ste sigurni da želite obrisati korisnika '%s' sa ulogom '%s'?", user.getIme(), user.getRole()),
@@ -277,7 +270,6 @@ public class SAdminUsersGUI {
                         JOptionPane.YES_NO_OPTION
                 );
 
-                // If user confirms, proceed with deletion
                 if (confirm == JOptionPane.YES_OPTION) {
                     boolean success = userDAO.deleteUser(userId);
                     if (success) {
@@ -311,7 +303,6 @@ public class SAdminUsersGUI {
                     }
                 }
             });
-            // Set initial icon scaling
             int initialWidth = button.getWidth();
             int initialHeight = button.getHeight();
             if (initialWidth > 0 && initialHeight > 0) {

@@ -41,21 +41,17 @@ public class IzvjestajGUI {
         PayrollDAO payrollDAO = new PayrollDAO();
         UserDAO userDAO = new UserDAO();
 
-
-
-        // Apply rounded borders to panels
-        mjesecniIzvjestajMainPanel.setBorder(new RoundedBorder(20)); // Rounded border for month report panel
+        mjesecniIzvjestajMainPanel.setBorder(new RoundedBorder(20));
         mjesecniIzvjestajMainPanel.setOpaque(false);
-        izvjestajZapMainPanel.setBorder(new RoundedBorder(20)); // Rounded border for employee report panel
+        izvjestajZapMainPanel.setBorder(new RoundedBorder(20));
         izvjestajZapMainPanel.setOpaque(false);
-        podesavanjePlataMainPanel.setBorder(new RoundedBorder(20)); // Rounded border for employee report panel
+        podesavanjePlataMainPanel.setBorder(new RoundedBorder(20));
         podesavanjePlataMainPanel.setOpaque(false);
-        superAdminPassChngeMainPanel.setBorder(new RoundedBorder(20)); // Rounded border for employee report panel
+        superAdminPassChngeMainPanel.setBorder(new RoundedBorder(20));
         superAdminPassChngeMainPanel.setOpaque(false);
-        passwordChangeMainPanel.setBorder(new RoundedBorder(20)); // Rounded border for employee report panel
+        passwordChangeMainPanel.setBorder(new RoundedBorder(20));
         passwordChangeMainPanel.setOpaque(false);
 
-        // Apply rounded borders to text fields
         setupRoundedTextField(godinaField);
         setupRoundedTextField(idZaposlenika);
 
@@ -77,7 +73,7 @@ public class IzvjestajGUI {
     }
 
     private void setupRoundedTextField(JTextField textField) {
-        textField.setBorder(new RoundedBorder(10));  // Adjust the value (e.g. 10) for the border radius
+        textField.setBorder(new RoundedBorder(10));
         textField.setOpaque(false);
 
         textField.setUI(new javax.swing.plaf.basic.BasicTextFieldUI() {
@@ -87,7 +83,7 @@ public class IzvjestajGUI {
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
                 g2.setColor(textField.getBackground());
-                g2.fillRoundRect(0, 0, textField.getWidth(), textField.getHeight(), 10, 10);  // Same radius
+                g2.fillRoundRect(0, 0, textField.getWidth(), textField.getHeight(), 10, 10);
 
                 g2.setColor(Color.LIGHT_GRAY);
                 g2.drawRoundRect(0, 0, textField.getWidth() - 1, textField.getHeight() - 1, 10, 10);
@@ -98,12 +94,12 @@ public class IzvjestajGUI {
             }
         });
 
-        textField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));  // Padding inside text field
+        textField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
     }
 
     private void setupRoundedPasswordField(JPasswordField passwordField) {
-        passwordField.setBorder(new RoundedBorder(10));  // Adjust the value (e.g. 10) for the border radius
-        passwordField.setOpaque(false);  // To make background transparent
+        passwordField.setBorder(new RoundedBorder(10));
+        passwordField.setOpaque(false);
 
         passwordField.setUI(new javax.swing.plaf.basic.BasicPasswordFieldUI() {
             @Override
@@ -112,7 +108,7 @@ public class IzvjestajGUI {
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
                 g2.setColor(passwordField.getBackground());
-                g2.fillRoundRect(0, 0, passwordField.getWidth(), passwordField.getHeight(), 10, 10);  // Same radius
+                g2.fillRoundRect(0, 0, passwordField.getWidth(), passwordField.getHeight(), 10, 10);
 
                 g2.setColor(Color.LIGHT_GRAY);
                 g2.drawRoundRect(0, 0, passwordField.getWidth() - 1, passwordField.getHeight() - 1, 10, 10);
@@ -123,17 +119,16 @@ public class IzvjestajGUI {
             }
         });
 
-        passwordField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));  // Padding inside password field
+        passwordField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
     }
 
     private void generateMonthlyReport(PayrollDAO payrollDAO) {
         try {
-            String godina = godinaField.getText(); // Dobijamo godinu
-            String mjesec = (String) mjesecComboBox.getSelectedItem(); // Dobijamo odabrani mjesec
+            String godina = godinaField.getText(); // Godina
+            String mjesec = (String) mjesecComboBox.getSelectedItem(); // Odabrani mjesec
 
-            // Ekstrakcija numeričkog dijela mjeseca
             String numerickiMjesec = mjesec.split("\\.")[0];
-            numerickiMjesec = String.format("%02d", Integer.parseInt(numerickiMjesec)); // Dodajemo vodeću nulu
+            numerickiMjesec = String.format("%02d", Integer.parseInt(numerickiMjesec));
 
             // Provjera unosa
             if (godina.isEmpty() || numerickiMjesec.isEmpty()) {
@@ -196,20 +191,19 @@ public class IzvjestajGUI {
 
     private void generateEmployeeReport(PayrollDAO payrollDAO) {
         try {
-            String input = idZaposlenika.getText(); // Get entered employee IDs
+            String input = idZaposlenika.getText();
             if (input.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Unesite ID zaposlenika.", "Greška", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Parse multiple IDs
+
             String[] idStrings = input.split(",");
             int[] employeeIds = new int[idStrings.length];
             for (int i = 0; i < idStrings.length; i++) {
                 employeeIds[i] = Integer.parseInt(idStrings[i].trim());
             }
 
-            // Fetch data for the given IDs
             List<String[]> report = payrollDAO.getEmployeeReportByIds(employeeIds);
 
             if (report.isEmpty()) {
@@ -222,7 +216,7 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Display the report in a table
+
             displayTable(report, "Izvještaj Zaposlenika");
 
         } catch (NumberFormatException ex) {
@@ -235,7 +229,7 @@ public class IzvjestajGUI {
 
     private void generateFullEmployeeReport(PayrollDAO payrollDAO) {
         try {
-            // Fetch data for all employees
+
             List<String[]> report = payrollDAO.getFullEmployeeReport();
 
             if (report.isEmpty()) {
@@ -248,7 +242,6 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Display the report in a table
             displayTable(report, "Izvještaj Zaposlenika - Svi Zaposlenici");
 
         } catch (Exception ex) {
@@ -290,7 +283,7 @@ public class IzvjestajGUI {
             String employeeIdText = idZapPodesavanjaPlateField.getText(); // Get entered Employee ID
             String newSalaryText = novaPlataField.getText(); // Get entered new salary
 
-            // Validate inputs
+
             if (employeeIdText.isEmpty() || newSalaryText.isEmpty()) {
                 JOptionPane.showMessageDialog(
                         null,
@@ -314,7 +307,7 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Fetch employee name
+
             String employeeName = payrollDAO.getEmployeeName(employeeId);
             if (employeeName == null) {
                 JOptionPane.showMessageDialog(
@@ -326,7 +319,6 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Display confirmation popup
             int confirm = JOptionPane.showConfirmDialog(
                     null,
                     "Jeste li sigurni da želite promijeniti platu za:\n" +
@@ -338,7 +330,7 @@ public class IzvjestajGUI {
             );
 
             if (confirm != JOptionPane.YES_OPTION) {
-                // Cancel update if the user chooses "No"
+
                 JOptionPane.showMessageDialog(
                         null,
                         "Ažuriranje plate je otkazano.",
@@ -348,7 +340,7 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Update salary in the database
+
             boolean success = payrollDAO.adjustSalary(employeeId, newSalary);
 
             if (success) {
@@ -405,8 +397,8 @@ public class IzvjestajGUI {
 
             int userId = Integer.parseInt(userIdText);
 
-            // Fetch user's name from database
-            String userName = userDAO.getUserNameById(userId); // Implement this in UserDAO
+
+            String userName = userDAO.getUserNameById(userId);
 
             if (userName == null) {
                 JOptionPane.showMessageDialog(
@@ -418,7 +410,7 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Show confirmation popup
+
             int confirm = JOptionPane.showConfirmDialog(
                     null,
                     "Jeste li sigurni da želite promijeniti šifru za korisnika:\n" +
@@ -438,8 +430,8 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Change password
-            boolean success = userDAO.changePasswordById(userId, newPassword); // Implement this in UserDAO
+
+            boolean success = userDAO.changePasswordById(userId, newPassword);
 
             if (success) {
                 JOptionPane.showMessageDialog(
@@ -480,7 +472,7 @@ public class IzvjestajGUI {
 
     private void changePasswordAsUser(UserDAO userDAO) {
         try {
-            // Get currently logged-in user
+
             String loggedInUser = LoginGUI.loggedInUser;
 
             if (loggedInUser == null || loggedInUser.isEmpty()) {
@@ -493,7 +485,7 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Retrieve input from password fields
+
             String currentPassword = new String(staraSifraPasswordField.getPassword());
             String newPassword = new String(novaSifraPasswordField.getPassword());
 
@@ -508,7 +500,7 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Confirm the password change action
+
             int confirm = JOptionPane.showConfirmDialog(
                     null,
                     "Are you sure you want to change your password?",
@@ -526,7 +518,7 @@ public class IzvjestajGUI {
                 return;
             }
 
-            // Attempt password change
+
             boolean success = userDAO.changePassword(loggedInUser, currentPassword, newPassword);
 
             if (success) {

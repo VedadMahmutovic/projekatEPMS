@@ -8,13 +8,16 @@ import java.util.List;
 
 public class EmployeeDAO {
 
-    // Add new employee to the database
-    public void addEmployee(Employee employee) {
-        String query = "INSERT INTO Employee (First_Name, Last_Name, Date_of_Birth, Email, Contact, Address, Apt_House_No, Post_Code, Department, Date_Hired, Basic_Salary, Job_Title, Status) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = MySQLConnection.connect();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+    // Dodavanje novih zaposlenika u bazu
 
+    public boolean addEmployee(Employee employee) {
+        String insertQuery = "INSERT INTO Employee (First_Name, Last_Name, Date_of_Birth, Email, Contact, Address, Apt_House_No, Post_Code, Department, Date_Hired, Basic_Salary, Job_Title, Status, Employee_Number) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = MySQLConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Popunjavanje podataka
             stmt.setString(1, employee.getFirstName());
             stmt.setString(2, employee.getLastName());
             stmt.setDate(3, java.sql.Date.valueOf(employee.getDateOfBirth()));
@@ -28,14 +31,33 @@ public class EmployeeDAO {
             stmt.setDouble(11, employee.getBasicSalary());
             stmt.setString(12, employee.getJobTitle());
             stmt.setString(13, employee.getStatus());
+            stmt.setInt(14, 0); // Placeholder za Employee_Number, postavlja se kasnije
 
-            stmt.executeUpdate();
-            System.out.println("✅ Employee added successfully!");
+            // Izvršavanje unosa i dohvatanje ID
+            int rowsInserted = stmt.executeUpdate();
+            if (rowsInserted > 0) {
+                ResultSet generatedKeys = stmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    int id = generatedKeys.getInt(1);
+
+                    // Ažuriranje Employee_Number na ID
+                    String updateQuery = "UPDATE Employee SET Employee_Number = ? WHERE ID = ?";
+                    try (PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
+                        updateStmt.setInt(1, id);
+                        updateStmt.setInt(2, id);
+                        updateStmt.executeUpdate();
+                    }
+                    System.out.println("✅ Employee added successfully with Employee_Number: " + id);
+                    return true;
+                }
+            }
         } catch (SQLException e) {
             System.out.println("❌ Error adding employee: " + e.getMessage());
             e.printStackTrace();
         }
+        return false;
     }
+
 
     // Get all employees from the database
     public List<Employee> getAllEmployees() {
@@ -74,7 +96,7 @@ public class EmployeeDAO {
         return employees;
     }
 
-    // Search for employees by different criteria
+    // Pretraga zaposlenika
     public List<Employee> searchEmployees(String searchText) {
         List<Employee> employees = new ArrayList<>();
         String query = "SELECT * FROM Employee WHERE First_Name LIKE ? OR Last_Name LIKE ? OR Email LIKE ? " +
@@ -122,7 +144,7 @@ public class EmployeeDAO {
         return employees;
     }
 
-    // Get an employee by their ID
+    // Pretraga po ID
     public Employee getEmployeeById(int id) {
         String query = "SELECT * FROM Employee WHERE ID = ?";
         Employee employee = null;

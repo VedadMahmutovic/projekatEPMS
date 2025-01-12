@@ -31,14 +31,14 @@ public class PlataGUI {
     private JTextField pregledIsplataOdDatumField;
     private JTextField pregledIsplataDoDatumField;
     private JPanel pregledIsplataMainPanel;
+    private JTextField bonusField;
+    private JTextField dedukcijaField;
 
     public PlataGUI() {
         PayrollDAO payrollDAO = new PayrollDAO();
 
-        // UI setup
         setupUI();
 
-        // Event listeners
         generisiButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,7 +62,7 @@ public class PlataGUI {
     }
 
     private void setupUI() {
-        // Rounded edges for panels
+
         genPlatListuMainPanel.setBorder(new RoundedBorder(20));
         genPlatListuMainPanel.setOpaque(false);
         obracunPlateGlavniPanel.setBorder(new RoundedBorder(20));
@@ -70,13 +70,14 @@ public class PlataGUI {
         pregledIsplataMainPanel.setBorder(new RoundedBorder(20));
         pregledIsplataMainPanel.setOpaque(false);
 
-        // Rounded edges for text fields
         setupRoundedTextField(idField);
         setupRoundedTextField(datumField);
         setupRoundedTextField(obracunIDField);
         setupRoundedTextField(pregledIsplataField);
         setupRoundedTextField(pregledIsplataOdDatumField);
         setupRoundedTextField(pregledIsplataDoDatumField);
+        setupRoundedTextField(bonusField);
+        setupRoundedTextField(dedukcijaField);
     }
 
     private void setupRoundedTextField(JTextField textField) {
@@ -106,43 +107,50 @@ public class PlataGUI {
 
     private void generisiPlatnuListu(PayrollDAO payrollDAO) {
         try {
-            int employeeId = Integer.parseInt(idField.getText());
-            String payDate = datumField.getText();
+            String employeeIds = idField.getText().trim();
+            String payDate = datumField.getText().trim();
+            double bonus = bonusField.getText().isEmpty() ? 0.0 : Double.parseDouble(bonusField.getText().trim());
+            double deduction = dedukcijaField.getText().isEmpty() ? 0.0 : Double.parseDouble(dedukcijaField.getText().trim());
 
             if (payDate.isEmpty()) {
-                statusTextArea.setText("❌ Molimo unesite datum isplate.");
+                statusTextArea.setText("❌ Unesite datum isplate.");
                 return;
             }
 
-            // Get employee's name and surname
-            String employeeName = payrollDAO.getEmployeeName(employeeId); // Fetch name from DAO
-
             int response = JOptionPane.showConfirmDialog(
                     null,
-                    "Jeste li sigurni da želite generisati platnu listu za zaposlenika ID " + employeeId + " (" + employeeName + ")?",
+                    "Da li ste sigurni da želite da generišete platnu listu za ID zaposlenih: " + employeeIds + "?",
                     "Potvrda",
                     JOptionPane.YES_NO_OPTION
             );
 
             if (response == JOptionPane.YES_OPTION) {
-                payrollDAO.generatePayroll(employeeId, payDate);
-                statusTextArea.setText("✅ Platna lista uspješno generisana za zaposlenika: " + employeeName + " (ID: " + employeeId + ")");
+                boolean payrollGenerated = payrollDAO.generatePayroll(employeeIds, payDate, bonus, deduction);
+
+                if (payrollGenerated) {
+                    statusTextArea.setText("✅ Platna lista uspešno generisana za zaposlene ID: " + employeeIds);
+                } else {
+                    statusTextArea.setText("❌ Neuspešno generisanje platne liste za neke ili sve ID-ove: " + employeeIds);
+                }
             } else {
                 statusTextArea.setText("❌ Akcija otkazana.");
             }
         } catch (NumberFormatException ex) {
-            statusTextArea.setText("❌ ID zaposlenika mora biti broj.");
+            statusTextArea.setText("❌ ID zaposlenika, bonus i odbitak moraju biti ispravno uneti brojevi.");
         } catch (Exception ex) {
             statusTextArea.setText("❌ Greška: " + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
+
+
+
     private void calculateNetSalary(PayrollDAO payrollDAO) {
         try {
             int employeeId = Integer.parseInt(obracunIDField.getText());
 
-            // Get employee's name and surname
+
             String employeeName = payrollDAO.getEmployeeName(employeeId);
 
             if (employeeName == null) {
@@ -242,6 +250,7 @@ public class PlataGUI {
             ex.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Plata GUI");

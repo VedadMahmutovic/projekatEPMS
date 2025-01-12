@@ -26,7 +26,7 @@ public class ZaposlenikGUI extends JFrame {
     private JPanel dodajZaposlenikaPanel;
     private JButton deleteButton;
     private JButton clearButton;
-    private JButton addButton;  // Define the add button here
+    private JButton addButton;
     private JPanel pregledZaposlenikaPanel;
     private JTable pregledZaposlenikaTabela;
     JPanel urediZapBackPanel;
@@ -39,7 +39,6 @@ public class ZaposlenikGUI extends JFrame {
     private JButton uzClearButton;
     private JButton pretraziButton;
 
-    // Konstruktor GUI
     public ZaposlenikGUI() {
         setupUI();
         addListeners();
@@ -47,7 +46,6 @@ public class ZaposlenikGUI extends JFrame {
         scaleIconsOnResize();
     }
 
-    // Method for styling buttons
     private void setupRoundedButton(JButton button) {
         button.setUI(new BasicButtonUI() {
             @Override
@@ -55,11 +53,9 @@ public class ZaposlenikGUI extends JFrame {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Draw rounded rectangle background
                 g2.setColor(c.getBackground());
                 g2.fillRoundRect(0, 0, c.getWidth(), c.getHeight(), 20, 20);
 
-                // Draw button text
                 g2.setColor(c.getForeground());
                 FontMetrics fm = g2.getFontMetrics();
                 String text = ((JButton) c).getText();
@@ -69,7 +65,6 @@ public class ZaposlenikGUI extends JFrame {
                 int y = (c.getHeight() + textHeight) / 2 - 2;
                 g2.drawString(text, x, y);
 
-                // Draw rounded rectangle border
                 g2.setColor(c.getForeground());
                 g2.drawRoundRect(0, 0, c.getWidth() - 1, c.getHeight() - 1, 20, 20);
 
@@ -77,16 +72,13 @@ public class ZaposlenikGUI extends JFrame {
             }
         });
 
-        // Remove default button visuals
         button.setOpaque(false);
-        button.setContentAreaFilled(false); // Prevent default background rendering
-        button.setBorderPainted(false); // Prevent default border rendering
+        button.setContentAreaFilled(false);
+        button.setBorderPainted(false);
 
-        // Set colors
         button.setBackground(Color.decode("#4D7B66"));
         button.setForeground(Color.decode("#DDF5E5"));
 
-        // Hover effects
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -114,35 +106,30 @@ public class ZaposlenikGUI extends JFrame {
         });
     }
 
-    // Method for styling text fields
+
     private void setupRoundedTextField(JTextField textField) {
-        textField.setBorder(new RoundedBorder(10)); // Apply rounded border
+        textField.setBorder(new RoundedBorder(10));
 
-        textField.setOpaque(false); // Allow custom background rendering
+        textField.setOpaque(false);
 
-        // Apply custom UI to handle painting cleanly
         textField.setUI(new BasicTextFieldUI() {
             @Override
             protected void paintSafely(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Draw rounded background
                 g2.setColor(textField.getBackground());
                 g2.fillRoundRect(0, 0, textField.getWidth(), textField.getHeight(), 10, 10);
 
-                // Draw border
                 g2.setColor(Color.LIGHT_GRAY);
                 g2.drawRoundRect(0, 0, textField.getWidth() - 1, textField.getHeight() - 1, 10, 10);
 
                 g2.dispose();
 
-                // Let Swing handle text rendering
                 super.paintSafely(g);
             }
         });
 
-        // Prevent default border artifacts
         textField.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
     }
 
@@ -153,7 +140,6 @@ public class ZaposlenikGUI extends JFrame {
         urediZapPanel.setBorder(new RoundedBorder(20));
         urediZapPanel.setOpaque(false);
 
-        // Apply rounded borders to buttons and text fields
         setupRoundedButton(deleteButton);
         setupRoundedButton(clearButton);
         setupRoundedButton(addButton);
@@ -173,21 +159,21 @@ public class ZaposlenikGUI extends JFrame {
         setupRoundedTextField(salaryField);
         setupRoundedTextField(jobTitleField);
         setupRoundedTextField(statusField);
-        setupRoundedTextField(pretraziPolje);  // Added for the search field
-        setupRoundedTextField(uzIdZaUreditiPolje);  // Added for the edit ID field
-        setupRoundedTextField(uzImePolje);  // Added
-        setupRoundedTextField(uzPrezime);  // Added
-        setupRoundedTextField(uzEmailPolje);  // Added
-        setupRoundedTextField(uzDobPolje);  // Added
-        setupRoundedTextField(uzKontaktPolje);  // Added
-        setupRoundedTextField(uzAdresaPolje);  // Added
-        setupRoundedTextField(uzHNPolje);  // Added
-        setupRoundedTextField(uzPostalPolje);  // Added
-        setupRoundedTextField(uzOdjelPolje);  // Added
-        setupRoundedTextField(uzDatumPolje);  // Added
-        setupRoundedTextField(uzPlataPolje);  // Added
-        setupRoundedTextField(uzNRMPolje);  // Added
-        setupRoundedTextField(uzStatusPolje);  // Added
+        setupRoundedTextField(pretraziPolje);
+        setupRoundedTextField(uzIdZaUreditiPolje);
+        setupRoundedTextField(uzImePolje);
+        setupRoundedTextField(uzPrezime);
+        setupRoundedTextField(uzEmailPolje);
+        setupRoundedTextField(uzDobPolje);
+        setupRoundedTextField(uzKontaktPolje);
+        setupRoundedTextField(uzAdresaPolje);
+        setupRoundedTextField(uzHNPolje);
+        setupRoundedTextField(uzPostalPolje);
+        setupRoundedTextField(uzOdjelPolje);
+        setupRoundedTextField(uzDatumPolje);
+        setupRoundedTextField(uzPlataPolje);
+        setupRoundedTextField(uzNRMPolje);
+        setupRoundedTextField(uzStatusPolje);
     }
 
     private void addListeners() {
@@ -196,7 +182,6 @@ public class ZaposlenikGUI extends JFrame {
         uzUpdateButton.addActionListener(e -> updateEmployee());
         uzClearButton.addActionListener(e -> clearUzFields());
 
-        // Add KeyListener to handle ENTER key in the search field
         pretraziPolje.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
@@ -209,7 +194,6 @@ public class ZaposlenikGUI extends JFrame {
 
         pretraziButton.addActionListener(e -> searchEmployees(pretraziPolje.getText()));
 
-        // Add delete button functionality
         deleteButton.addActionListener(e -> {
             String idText = idField.getText().trim();  // Get ID from input field
             if (idText.isEmpty()) {
@@ -227,7 +211,6 @@ public class ZaposlenikGUI extends JFrame {
                     return;
                 }
 
-                // Ask for confirmation to delete
                 int confirmation = JOptionPane.showConfirmDialog(this,
                         "Are you sure you would like to delete employee ID " + employeeId +
                                 ": " + employee.getFirstName() + " " + employee.getLastName() + "?",
@@ -322,16 +305,15 @@ public class ZaposlenikGUI extends JFrame {
     private void searchEmployees(String query) {
         try {
             EmployeeDAO dao = new EmployeeDAO();
-            List<Employee> employees = dao.searchEmployees(query);  // Assuming `searchEmployees` is implemented in DAO
+            List<Employee> employees = dao.searchEmployees(query);
 
             if (employees.isEmpty()) {
-                // Show a message if no employees are found
+
                 JOptionPane.showMessageDialog(this, "No employees found matching the search term.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 String[] columnNames = {"ID", "First Name", "Last Name", "Email", "DOB", "Contact", "Department", "Date Hired", "Salary", "Job Title", "Status"};
                 DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 
-                // Populate the model with employee data
                 for (Employee emp : employees) {
                     model.addRow(new Object[]{
                             emp.getId(),
@@ -348,28 +330,23 @@ public class ZaposlenikGUI extends JFrame {
                     });
                 }
 
-                // Create a JTable with the model
                 JTable resultTable = new JTable(model);
                 resultTable.setFillsViewportHeight(true);
 
-                // Customize the appearance of the JTable
                 resultTable.setBackground(new Color(39, 83, 56));  // Set the background color
                 resultTable.setForeground(new Color(173, 212, 190));  // Set the text color
                 resultTable.setGridColor(new Color(173, 212, 190));  // Set the grid color
                 resultTable.setSelectionBackground(new Color(25, 58, 39));  // Set the selection background color
                 resultTable.setSelectionForeground(new Color(173, 212, 190));  // Set the selection text color
 
-                // Create a JScrollPane to contain the JTable
                 JScrollPane scrollPane = new JScrollPane(resultTable);
 
-                // Create a JDialog to show the search results
                 JDialog dialog = new JDialog(this, "Search Results", true);
                 dialog.setSize(800, 400);
                 dialog.setLocationRelativeTo(this);  // Center the dialog
                 dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 dialog.add(scrollPane);  // Add the scroll pane containing the table
 
-                // Display the dialog
                 dialog.setVisible(true);
             }
         } catch (Exception e) {
@@ -380,14 +357,13 @@ public class ZaposlenikGUI extends JFrame {
 
     private void updateEmployee() {
         try {
-            // Get the employee ID
+
             String employeeId = uzIdZaUreditiPolje.getText().trim();
             if (employeeId.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Please enter an employee ID to update.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Fetch the existing employee data
             EmployeeDAO dao = new EmployeeDAO();
             Employee employee = dao.getEmployeeById(Integer.parseInt(employeeId));
             if (employee == null) {
@@ -395,7 +371,6 @@ public class ZaposlenikGUI extends JFrame {
                 return;
             }
 
-            // Set the updated values if the user entered them, else retain old values
             String firstName = uzImePolje.getText().trim();
             if (!firstName.isEmpty()) {
                 employee.setFirstName(firstName);
@@ -449,14 +424,12 @@ public class ZaposlenikGUI extends JFrame {
                 employee.setStatus(status);
             }
 
-            // Show confirmation dialog before updating
             int option = JOptionPane.showConfirmDialog(this, "Are you sure you want to update the employee's details?",
                     "Confirm Update", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
-                // Update the employee in the database
                 dao.updateEmployee(employee);
                 JOptionPane.showMessageDialog(this, "Employee updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                loadEmployeeTable();  // Reload the employee table to reflect changes
+                loadEmployeeTable();
             }
 
         } catch (Exception e) {
@@ -464,9 +437,6 @@ public class ZaposlenikGUI extends JFrame {
             e.printStackTrace();
         }
     }
-
-
-
 
     private void clearFields() {
         idField.setText("");
@@ -517,7 +487,7 @@ public class ZaposlenikGUI extends JFrame {
                     }
                 }
             });
-            // Set initial icon scaling
+
             int initialWidth = button.getWidth();
             int initialHeight = button.getHeight();
             if (initialWidth > 0 && initialHeight > 0) {
@@ -539,12 +509,4 @@ public class ZaposlenikGUI extends JFrame {
         });
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            ZaposlenikGUI gui = new ZaposlenikGUI();
-            gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            gui.setSize(1200, 800);
-            gui.setVisible(true);
-        });
-    }
 }

@@ -18,18 +18,17 @@ public class LoginGUI extends JFrame {
     private JPanel mainLoginPanel;
     private JRadioButton superAdminButton;
 
-    // Static field to store the logged-in user
     public static String loggedInUser;
 
     public LoginGUI() {
         setTitle("Login - Employee Payroll Management System");
-        setContentPane(loginPanel); // Glavni panel iz GUI Designera
+        setContentPane(loginPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300); // Veličina prozora
-        setLocationRelativeTo(null); // Centriraj prozor
+        setSize(400, 300);
+        setLocationRelativeTo(null);
 
-        // Background
-        loginPanel.setOpaque(false); // Omogućava transparentnost za crtanje pozadine
+        // Background, omogućava transparentnost za crtanje pozadine
+        loginPanel.setOpaque(false);
         JPanel gradientPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -47,26 +46,36 @@ public class LoginGUI extends JFrame {
             }
         };
 
-        // Border
+
         mainLoginPanel.setBorder(new RoundedBorder(20));
         mainLoginPanel.setOpaque(false);
 
-        imePolje.setBorder(new RoundedTextFieldBorder(20)); // Apply the border
-        imePolje.setForeground(Color.WHITE);  // Set text color
+        imePolje.setBorder(new RoundedTextFieldBorder(20));
+        imePolje.setForeground(Color.WHITE);
         imePolje.setCaretColor(Color.WHITE);
 
         passwordPolje.setBorder(new RoundedTextFieldBorder(20));
         passwordPolje.setOpaque(false);
-        passwordPolje.setForeground(Color.WHITE);  // Set text color
+        passwordPolje.setForeground(Color.WHITE);
         passwordPolje.setCaretColor(Color.WHITE);
 
-        gradientPanel.setLayout(new BorderLayout()); // Preuzmi layout iz loginPanel
-        gradientPanel.add(loginPanel); // Dodaj originalni loginPanel u gradientPanel
+        gradientPanel.setLayout(new BorderLayout());
+        gradientPanel.add(loginPanel);
 
-        setContentPane(gradientPanel); // Postavi gradientPanel kao glavni sadržaj
-
-        // Add functionality to the login button
+        setContentPane(gradientPanel);
+        // Ovdje se dodaje funkcionalnost za login dugme
         login.addActionListener(this::performLogin);
+
+        InputMap inputMap = loginPanel.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap actionMap = loginPanel.getActionMap();
+
+        inputMap.put(KeyStroke.getKeyStroke("ENTER"), "loginAction");
+        actionMap.put("loginAction", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                performLogin(e);
+            }
+        });
     }
 
     private void performLogin(ActionEvent e) {
@@ -79,12 +88,12 @@ public class LoginGUI extends JFrame {
             return;
         }
 
-        // Authenticate user
+        // Autentifikacija korisnika
         UserDAO userDAO = new UserDAO();
         if (userDAO.authenticate(username, password, role)) {
-            loggedInUser = username; // Save the logged-in user
+            loggedInUser = username;
             JOptionPane.showMessageDialog(this, "Login successful!");
-            dispose(); // Close the Login window
+            dispose();
             openRoleSpecificMenu(role);
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username, password, or role.");
@@ -99,9 +108,9 @@ public class LoginGUI extends JFrame {
         } else if (employeeButton.isSelected()) {
             return "Employee";
         } else if (superAdminButton.isSelected()) {
-            return "Super Admin"; // Add Super Admin role
+            return "Super Admin";
         }
-        return null; // No role selected
+        return null;
     }
 
     private void openRoleSpecificMenu(String role) {
@@ -116,7 +125,7 @@ public class LoginGUI extends JFrame {
                 new EmployeeGUI().setVisible(true);
                 break;
             case "Super Admin":
-                new MenuGUI().setVisible(true); // Super Admin uses MenuGUI
+                new MenuGUI().setVisible(true); // MenuGUI je Super admin
                 break;
             default:
                 throw new IllegalArgumentException("Invalid role: " + role);

@@ -101,6 +101,7 @@
               <maximumSize width="230" height="35"/>
               <minimumSize width="230" height="25"/>
               <preferredSize width="230" height="25"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="f2b7e" class="javax.swing.JLabel">

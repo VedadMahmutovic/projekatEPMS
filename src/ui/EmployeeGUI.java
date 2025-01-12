@@ -35,7 +35,6 @@ public class EmployeeGUI extends JFrame {
         setTitle("Employee Menu - Employee Payroll Management System");
 
 
-        // Gradient background setup
         JPanel gradientPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -66,7 +65,6 @@ public class EmployeeGUI extends JFrame {
         setSize(1920, 1080);
         setLocationRelativeTo(null);
 
-        // Add action listeners for retained functionalities
         pregledZaposlenikaButton.addActionListener(e -> viewEmployeeInfo());
         pregledIsplataButton.addActionListener(e -> viewPayrollDetails());
         mjesecniIzvjestajPlataButton.addActionListener(e -> viewMonthlyReport());
@@ -143,20 +141,28 @@ public class EmployeeGUI extends JFrame {
         odjavaButton.addActionListener(e -> {
             int confirmed = JOptionPane.showConfirmDialog(
                     this,
-                    "Are you sure you want to log out?",
-                    "Logout Confirmation",
+                    "Da li ste sigurni da želite da se odjavite?",
+                    "Potvrda odjave",
                     JOptionPane.YES_NO_OPTION
             );
 
             if (confirmed == JOptionPane.YES_OPTION) {
+                // Zatvara sve otvorene prozore
+                for (Window window : Window.getWindows()) {
+                    if (window instanceof JFrame) {
+                        window.dispose();
+                    }
+                }
+
+                // Prikaz LoginGUI prozora
                 SwingUtilities.invokeLater(() -> {
-                    dispose();
                     JFrame loginFrame = new LoginGUI();
                     loginFrame.setVisible(true);
                 });
             }
         });
     }
+
 
     private void viewEmployeeInfo() {
         try {
@@ -172,7 +178,6 @@ public class EmployeeGUI extends JFrame {
                 return;
             }
 
-            // Fetch details using the updated method
             String[] employeeDetails = userDAO.getEmployeeDetailsByUsername(loggedInUser);
 
             if (employeeDetails == null) {
@@ -185,7 +190,6 @@ public class EmployeeGUI extends JFrame {
                 return;
             }
 
-            // Display the details
             StringBuilder details = new StringBuilder("Your Details:\n");
             details.append("Username: ").append(employeeDetails[0]).append("\n");
             details.append("Role: ").append(employeeDetails[1]).append("\n");
@@ -230,7 +234,6 @@ public class EmployeeGUI extends JFrame {
                 return;
             }
 
-            // Fetch payroll details for the logged-in user
             List<String[]> payrollDetails = payrollDAO.getPayrollForLoggedInUser(loggedInUser);
 
             if (payrollDetails.isEmpty()) {
@@ -243,7 +246,6 @@ public class EmployeeGUI extends JFrame {
                 return;
             }
 
-            // Display payroll details in a table
             String[] columns = {"Payroll ID", "Salary", "Deductions", "Tax", "Bonus", "Pay Date"};
             DefaultTableModel model = new DefaultTableModel(columns, 0);
 
@@ -294,7 +296,7 @@ public class EmployeeGUI extends JFrame {
                 return;
             }
 
-            // Dohvati mjesečni izvještaj za prijavljenog korisnika
+            // Dohvata mjesečni izvještaj za prijavljenog korisnika
             List<String[]> monthlyReport = payrollDAO.getMonthlyReportForLoggedInUser(loggedInUser);
 
             if (monthlyReport.isEmpty()) {
@@ -412,17 +414,6 @@ public class EmployeeGUI extends JFrame {
             Image img = icon.getImage();
             Image scaledImg = img.getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH);
             button.setIcon(new ImageIcon(scaledImg));
-        }
-    }
-
-    private void replaceWithResizableIcon(JLabel label, String imagePath) {
-        ImageIcon icon = new ImageIcon(getClass().getResource(imagePath));
-        if (icon != null) {
-            Image img = icon.getImage();
-            Image scaledImg = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
-            label.setIcon(new ImageIcon(scaledImg));
-        } else {
-            System.out.println("❌ Unable to find icon at: " + imagePath);
         }
     }
 
